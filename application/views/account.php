@@ -6,7 +6,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Mokku Pasar Payang</title>
+    <title>DXPRINT</title>
 
     <meta name="author" content="themesflat.com">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -44,7 +44,8 @@
                     </div>
                     <div class="col-xl-3 col-md-4 col-6">
                         <a href="index.html" class="logo-header">
-                            <img src="images/logo/logo.svg" alt="logo" class="logo">
+                            <!-- <img src="images/logo/logo.svg" alt="logo" class="logo"> -->
+                            <h5><b>DXPRINT</b></h5>
                         </a>
                     </div>
                     <div class="col-xl-6 tf-md-hidden">
@@ -77,14 +78,14 @@
                                 <li><a href="my-account-orders.html" class="my-account-nav-item">Orders</a></li>
                                 <li><a href="<?= base_url('main/addressDetails')?>" class="my-account-nav-item">Address</a></li>
                                 <li><a href="my-account-edit.html" class="my-account-nav-item">Account Details</a></li>
-                                <li><a href="login.html" class="my-account-nav-item">Logout</a></li>
+                                <li><a href="<?= base_url('login/logout')?>" class="my-account-nav-item">Logout</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-lg-9">
                         <div class="my-account-content account-dashboard">
                             <div class="mb_60">
-                                <h5 class="fw-5 mb_20">Hello Themesflat</h5>
+                                <h5 class="fw-5 mb_20">Hello <?= $user['name']?></h5>
                                 <p>
                                     From your account dashboard you can view your <a class="text_primary" href="my-account-orders.html">recent orders</a>, manage your <a class="text_primary" href="my-account-address.html">shipping and billing address</a>, and <a class="text_primary" href="my-account-edit.html">edit your password and account details</a>.
                                 </p>
@@ -840,7 +841,7 @@
                                     </a>
                                     <div id="sub-account" class="collapse">
                                         <ul class="sub-nav-menu sub-menu-level-2">
-                                            <li><a href="my-account.html" class="sub-nav-link">My account</a></li>
+                                            <li><a href="<?= base_url('main/my_account')?>" class="sub-nav-link">My account</a></li>
                                             <li><a href="my-account-orders.html" class="sub-nav-link">My order</a></li>
                                             <li><a href="my-account-orders-details.html" class="sub-nav-link">My order details</a></li>
                                             <li><a href="my-account-address.html" class="sub-nav-link">My address</a></li>

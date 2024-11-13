@@ -51,6 +51,20 @@
                                                         </ul>
                                                     </div>
                                                 </div>
+                                                <div class="col-lg-2">
+                                                    <div class="mega-menu-item">
+                                                        <div class="menu-heading">Uniform</div>
+                                                        <ul class="menu-list">
+                                                            <? if($list_uniform){ ?>
+                                                                <? foreach ($list_uniform as $uniform) { ?>
+                                                                <li><a href="<?= base_url('main/productDetail/'.$uniform['product_id'])?>" class="menu-link-text link"><?= $uniform['name']?></a></li>
+                                                                <? } ?>
+                                                            <? } else {
+                                                                    echo "<font color='red'>Product is empty</font>";
+                                                            } ?>
+                                                        </ul>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

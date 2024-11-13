@@ -547,10 +547,10 @@
                                             <!-- <input class="" type="text" placeholder="Choose category" name="text" tabindex="0" value="" aria-required="true" required=""> -->
                                             <select name="category" required>
                                                 <option value="">Choose category</option>
-                                                <option value="1">Kain Sarung</option>
-                                                <option value="2">Kaftan</option>
-                                                <option value="3">Kemeja</option>
-                                                <option value="4">Kaftan Sepasang</option>
+                                                <option value="1">T - Shirt Lengan Panjang</option>
+                                                <option value="2">T - Shirt Lengan Pendek</option>
+                                                <option value="3">Jersey</option>
+                                                <option value="4">Uniform</option>
                                             </select>
                                         </fieldset>
                                         <div class="cols-lg gap22">
@@ -571,7 +571,7 @@
 
                                                     <? foreach ($colors as $colorval) { ?>
 
-                                                            <input id="values-orange" type="checkbox" name="color[]" value="<?= $colorval['id']?>">
+                                                            <input id="values-<?=$colorval['value']?>" type="checkbox" name="color[]" value="<?= $colorval['id']?>">
                                                             <label class="radius-60" for="values-<?=$colorval['value']?>" data-value="<?=ucfirst($colorval['value'])?>">
                                                                 <span class="btn-checkbox bg-color-<?= $colorval['value']?>"></span>
                                                             </label>

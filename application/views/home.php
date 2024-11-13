@@ -16,11 +16,11 @@
     <!-- /preload -->
     <div id="wrapper">
         <!-- Header -->
-        <header id="header" class="header-default header-absolute">
-            <div class="px_15 lg-px_40">
+        <header id="header" class="header-default header-uppercase">
+            <div class="container-full px_15 lg-px_40">
                 <div class="row wrapper-header align-items-center">
                     <div class="col-md-4 col-3 tf-lg-hidden">
-                        <a href="#mobileMenu" data-bs-toggle="offcanvas" aria-controls="offcanvasLeft">
+                        <a href="#mobileMenu" data-bs-toggle="offcanvas" aria-controls="offcanvasLeft" class="btn-mobile">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="16" viewBox="0 0 24 16" fill="none">
                                 <path d="M2.00056 2.28571H16.8577C17.1608 2.28571 17.4515 2.16531 17.6658 1.95098C17.8802 1.73665 18.0006 1.44596 18.0006 1.14286C18.0006 0.839753 17.8802 0.549063 17.6658 0.334735C17.4515 0.120408 17.1608 0 16.8577 0H2.00056C1.69745 0 1.40676 0.120408 1.19244 0.334735C0.978109 0.549063 0.857702 0.839753 0.857702 1.14286C0.857702 1.44596 0.978109 1.73665 1.19244 1.95098C1.40676 2.16531 1.69745 2.28571 2.00056 2.28571ZM0.857702 8C0.857702 7.6969 0.978109 7.40621 1.19244 7.19188C1.40676 6.97755 1.69745 6.85714 2.00056 6.85714H22.572C22.8751 6.85714 23.1658 6.97755 23.3801 7.19188C23.5944 7.40621 23.7148 7.6969 23.7148 8C23.7148 8.30311 23.5944 8.59379 23.3801 8.80812C23.1658 9.02245 22.8751 9.14286 22.572 9.14286H2.00056C1.69745 9.14286 1.40676 9.02245 1.19244 8.80812C0.978109 8.59379 0.857702 8.30311 0.857702 8ZM0.857702 14.8571C0.857702 14.554 0.978109 14.2633 1.19244 14.049C1.40676 13.8347 1.69745 13.7143 2.00056 13.7143H12.2863C12.5894 13.7143 12.8801 13.8347 13.0944 14.049C13.3087 14.2633 13.4291 14.554 13.4291 14.8571C13.4291 15.1602 13.3087 15.4509 13.0944 15.6653C12.8801 15.8796 12.5894 16 12.2863 16H2.00056C1.69745 16 1.40676 15.8796 1.19244 15.6653C0.978109 15.4509 0.857702 15.1602 0.857702 14.8571Z" fill="currentColor"></path>
                             </svg>
@@ -28,7 +28,7 @@
                     </div>
                     <div class="col-xl-3 col-md-4 col-6">
                         <a href="index.html" class="logo-header">
-                            <!-- <img src="<?= base_url(); ?>assets/images/logo/logo.svg" alt="logo" class="logo"> -->
+                            <!-- <img src="images/logo/logo@2x.png" alt="logo" class="logo dark-logo"> -->
                             <h5><b>DXPRINT</b></h5>
                         </a>
                     </div>
@@ -41,57 +41,64 @@
                 </div>
             </div>
         </header>
-        <!-- /Header -->
-        <!-- Slider -->
-        <div class="tf-slideshow slider-effect-fade position-relative"> 
-            <div dir="ltr" class="swiper tf-sw-slideshow" data-preview="1" data-tablet="1" data-mobile="1" data-centered="false" data-space="0" data-loop="true" data-auto-play="false" data-delay="0" data-speed="1000">
+        <!-- /header -->
+        <!-- slider -->
+        <div class="tf-slideshow slider-effect-fade position-relative slideshow-tee">
+            <div dir="ltr" class="swiper tf-sw-slideshow" data-preview="1" data-tablet="1" data-mobile="1" data-centered="false" data-space="0" data-loop="true" data-auto-play="true" data-delay="2000" data-speed="1000">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">
+                    <div class="swiper-slide" lazy="true">
                         <div class="wrap-slider">
-                            <img src="<?= base_url(); ?>assets/images/slider/1_E9m2iVwyTP9xG9CPw_KxIA.png" alt="fashion-slideshow">
-                            <div class="box-content">
+                            <img class="lazyload" data-src="<?=base_url()?>assets/images/slider/1_E9m2iVwyTP9xG9CPw_KxIA.png" src="<?=base_url()?>assets/images/slider/slideshow1_tee.jpg" alt="slideshow" loading="lazy">
+                            <div class="box-content text-center">
                                 <div class="container">
-                                    <h1 class="fade-item fade-item-1">Super Value<br>Deal</h1>
-                                    <p class="fade-item fade-item-2" style="color:white;">From casual to formal, we've got you covered</p>
-                                    <a href="shop-default.html" class="fade-item fade-item-3 tf-btn btn-fill animate-hover-btn btn-xl radius-3"><span>Shop collection</span><i class="icon icon-arrow-right"></i></a>
+                                    <h1 class="fade-item fade-item-1 text-stroke-white heading font-caprasimo">PARADISE</h1>
+                                    <p class="fade-item fade-item-2 text_white d-block font-caprasimo">collections</p>
+                                    <div class="fade-item fade-item-3">
+                                        <a href="#" class="tf-btn btn-light-icon font-caprasimo fw-4 animate-hover-btn letter-2"><span>SHOP NOW</span></a> 
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="swiper-slide">
+                    <?/*
+                    <div class="swiper-slide" lazy="true">
                         <div class="wrap-slider">
-                            <img src="<?= base_url(); ?>assets/images/slider/fashion-slideshow-02.jpg" alt="fashion-slideshow">
-                            <div class="box-content">
+                            <img class="lazyload" data-src="<?= base_url()?>assets/images/slider/slideshow2_tee.jpg" src="<?= base_url()?>assets/images/slider/slideshow2_tee.jpg" alt="slideshow" loading="lazy">
+                            <div class="box-content text-center">
                                 <div class="container">
-                                    <h1 class="fade-item fade-item-1">Simple <br class="md-hidden">Style</h1>
-                                    <p class="fade-item fade-item-2">From casual to formal, we've got you covered</p>
-                                    <a href="shop-default.html" class="fade-item fade-item-3 tf-btn btn-fill animate-hover-btn btn-xl radius-3"><span>Shop collection</span><i class="icon icon-arrow-right"></i></a>
+                                    <h1 class="fade-item fade-item-1 text-stroke-white heading font-caprasimo">Out Of Office</h1>
+                                    <p class="fade-item fade-item-2 text_white d-block font-caprasimo">collections</p>
+                                    <div class="fade-item fade-item-3">
+                                        <a href="shop-collection-sub.html" class="tf-btn btn-light-icon font-caprasimo fw-4 animate-hover-btn letter-2"><span>SHOP NOW</span></a> 
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="swiper-slide">
+                    <div class="swiper-slide" lazy="true">
                         <div class="wrap-slider">
-                            <img src="<?= base_url(); ?>assets/images/slider/fashion-slideshow-03.jpg" alt="fashion-slideshow">
-                            <div class="box-content">
+                            <img class="lazyload" data-src="<?= base_url()?>assets/images/slider/slideshow3_tee.jpg" src="<?= base_url()?>assets/images/slider/slideshow3_tee.jpg" alt="slideshow" loading="lazy">
+                            <div class="box-content text-center">
                                 <div class="container">
-                                    <h1 class="fade-item fade-item-1">Glamorous<br>Glam</h1>
-                                    <p class="fade-item fade-item-2">From casual to formal, we've got you covered</p>
-                                    <a href="shop-default.html" class="fade-item fade-item-3 tf-btn btn-fill animate-hover-btn btn-xl radius-3"><span>Shop collection</span><i class="icon icon-arrow-right"></i></a>
+                                    <h1 class="fade-item fade-item-1 text-stroke-white heading font-caprasimo">SALE</h1>
+                                    <p class="fade-item fade-item-2 text_white d-block font-caprasimo">End Of Season Sale</p>
+                                    <div class="fade-item fade-item-3">
+                                        <a href="shop-collection-sub.html" class="tf-btn btn-light-icon font-caprasimo fw-4 animate-hover-btn letter-2"><span>SHOP NOW</span></a> 
+                                    </div>
                                 </div>
                             </div>
-                            
                         </div>
                     </div>
+                    */?>
                 </div>
             </div>
             <div class="wrap-pagination">
                 <div class="container">
-                    <div class="sw-dots sw-pagination-slider justify-content-center"></div>
+                    <div class="sw-dots dots-fill-white sw-pagination-slider justify-content-center"></div>
                 </div>
             </div>
         </div>
-        <!-- /Slider -->
+        <!-- /slider -->
         <!-- Marquee -->
         <?/*
         <div class="tf-marquee bg_yellow-2">
@@ -1717,26 +1724,26 @@
                     <span class="icon-close icon-close-popup" data-bs-dismiss="modal"></span>
                 </div>
                 <div class="tf-login-form">
-                    <form class="">
+                    <form class="" action="<? echo base_url('login/register'); ?>" accept-charset="utf-8" method="post">
                         <div class="tf-field style-1">
-                            <input class="tf-field-input tf-input" placeholder=" " type="text"  name="">
-                            <label class="tf-field-label" for="">First name</label>
+                            <input class="tf-field-input tf-input" required placeholder=" " type="text"  name="name">
+                            <label class="tf-field-label" for="">Fullname</label>
                         </div>
                         <div class="tf-field style-1">
-                            <input class="tf-field-input tf-input" placeholder=" " type="text"  name="">
-                            <label class="tf-field-label" for="">Last name</label>
-                        </div>
-                        <div class="tf-field style-1">
-                            <input class="tf-field-input tf-input" placeholder=" " type="email"  name="">
+                            <input class="tf-field-input tf-input" required placeholder=" " type="email"  name="email">
                             <label class="tf-field-label" for="">Email *</label>
                         </div>
                         <div class="tf-field style-1">
-                            <input class="tf-field-input tf-input" placeholder=" " type="password"  name="">
+                            <input class="tf-field-input tf-input" required placeholder=" " type="text"  name="username">
+                            <label class="tf-field-label" for="">Username</label>
+                        </div>
+                        <div class="tf-field style-1">
+                            <input class="tf-field-input tf-input" required placeholder=" " type="password"  name="password">
                             <label class="tf-field-label" for="">Password *</label>
                         </div>
                         <div class="bottom"> 
                             <div class="w-100">
-                                <a href="register.html" class="tf-btn btn-fill animate-hover-btn radius-3 w-100 justify-content-center"><span>Register</span></a>
+                                <button type="submit" class="tf-btn btn-fill animate-hover-btn radius-3 w-100 justify-content-center"><span>Register</span></button>
                             </div>
                             <div class="w-100">
                                 <a href="#login" data-bs-toggle="modal" class="btn-link fw-6 w-100 link">
@@ -2177,6 +2184,11 @@
     <script type="text/javascript">
         <?php if ($this->session->flashdata('error')) { ?>
                 var msg = '<?php echo $this->session->flashdata('error'); ?>';
+                alert (msg);
+        <?php } ?>
+
+        <?php if ($this->session->flashdata('success')) { ?>
+                var msg = '<?php echo $this->session->flashdata('success'); ?>';
                 alert (msg);
         <?php } ?>
 

@@ -45,7 +45,8 @@
                     </div>
                     <div class="col-xl-3 col-md-4 col-6">
                         <a href="index.html" class="logo-header">
-                            <img src="images/logo/logo.svg" alt="logo" class="logo">
+                            <!-- <img src="images/logo/logo.svg" alt="logo" class="logo"> -->
+                            <h5><b>DXPRINT</b></h5>
                         </a>
                     </div>
                     <div class="col-xl-6 tf-md-hidden">

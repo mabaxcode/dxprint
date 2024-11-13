@@ -10,6 +10,8 @@ class Main extends CI_Controller {
         if ($this->session->userdata('user_id')) {
         	$this->user_id = $this->session->userdata('user_id');
         	$this->user_type = $this->session->userdata('user_type');
+        } else {
+        	redirect();
         }
 
         
@@ -151,7 +153,7 @@ class Main extends CI_Controller {
 	{	
 
 		$data['address'] = get_any_table_row(array('user_id' => $this->user_id), 'address');
-		$data['info'] = get_any_table_row(array('user_id' => $this->user_id), 'personal_info');
+		// $data['info'] = get_any_table_row(array('user_id' => $this->user_id), 'personal_info');
 
 		$data['users'] = get_any_table_row(array('id' => $this->user_id), 'users');
 
@@ -183,6 +185,8 @@ class Main extends CI_Controller {
 		$data['user_id'] = $this->user_id;
 		$data['user_type'] = $this->user_type;
 
+		$data['states'] = get_any_table_array(array('module' => 'state'), 'ref_code');
+
 		$this->load->view('address-detail', $data);
 	}
 
@@ -190,15 +194,17 @@ class Main extends CI_Controller {
 	function addNewAddress($data=false)
 	{
 		$post = $this->input->post();
-		// print_r($post);
+		// print_r($post); exit;
 
 		$insert = array(
 			'address' => $post['addressunit'],
 			'city' => $post['city'],
-			'country' => $post['address']['country'],
+			'state' => $post['state'],
 			'postcode' => $post['AddressZipNew'],
 			'user_id' => $this->user_id,
 		);
+
+		// print_r($insert); exit;
 
 		$status = insert_any_table($insert, 'address');
 
@@ -207,6 +213,30 @@ class Main extends CI_Controller {
 		} else {
 			$response = array('status' => false );
 		}
+
+		echo encode($response); 
+	}
+
+	function editAddress($data=false)
+	{
+		$post = $this->input->post();
+		// print_r($post);
+
+		$update = array(
+			'address' => $post['addressunit'],
+			'city' => $post['city'],
+			'state' => $post['state'],
+			'postcode' => $post['postcode']
+		);
+
+		// echo "<pre>"; print_r($update); echo "</pre>"; exit;
+		
+
+		$where = array('user_id' => $this->user_id);
+
+		update_any_table($update, $where, 'address');
+
+		$response = array('status' => true );
 
 		echo encode($response); 
 	}
@@ -241,7 +271,8 @@ class Main extends CI_Controller {
 
 		}
 
-		echo $data['address'];
+		$this->load->view('place_order', $data);
+		
 
 	}
 

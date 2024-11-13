@@ -51,4 +51,29 @@ class Login extends CI_Controller {
 			redirect();
 		}
 	}
+
+	function logout()
+	{
+	    $this->session->sess_destroy();
+	    redirect();
+	}
+
+	function register($data=false)
+	{
+		$post = $this->input->post();
+		// print_r($post);
+
+		$insert = array(
+			'name' => $post['name'],
+			'username' => $post['username'],
+			'email' => $post['email'],
+			'password' => md5($post['password']),
+			'user_type' => 'MEMBER',
+		);
+
+		insert_any_table($insert, 'users');
+
+		$this->session->set_flashdata('success', "Successfully create account");
+		redirect();
+	}
 }

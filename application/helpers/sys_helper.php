@@ -158,6 +158,24 @@ function count_any_table($where, $table)
     
 }
 
+function get_ref_code($module, $code)
+{
+    $ci = load_instance();
+    $ci->load->database();
+
+    $ci->db->select('*');
+    $ci->db->where(array('module' => $module));
+    $ci->db->where(array('code_id' => $code));
+    $query = $ci->db->get('ref_code');
+
+    if ($query->num_rows() > 0) {
+        $result = $query->row();
+        return $result->code_desc;
+    } else {
+        return false;
+    }
+}
+
 /*
 
 function display_current_dt()
@@ -170,7 +188,7 @@ function display_current_dt()
 
 function delete_any_table($where, $table)
 {
-    $tco = load_instance();
+    $ci = load_instance();
     $tco->load->database();
     $tco->db->delete($table, $where);
     return $tco->db->affected_rows();
