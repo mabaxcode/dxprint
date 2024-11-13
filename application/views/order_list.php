@@ -18,7 +18,7 @@
    <link rel="stylesheet" href="<?= base_url()?>assets/css/bootstrap.min.css">
    <link rel="stylesheet" href="<?= base_url()?>assets/css/swiper-bundle.min.css">
    <link rel="stylesheet" href="<?= base_url()?>assets/css/animate.css">
-   <link rel="stylesheet" type="text/css" href="<?= base_url()?>assets/css/styles.css"/>
+   <link rel="stylesheet"type="text/css" href="<?= base_url()?>assets/css/styles.css"/>
 
     <!-- Favicon and Touch Icons  -->
     <link rel="shortcut icon" href="<?= base_url()?>assets/images/logo/favicon.png">
@@ -29,7 +29,7 @@
 <body class="preload-wrapper">
     <!-- RTL -->
     <!-- <a href="javascript:void(0);" id="toggle-rtl" class="tf-btn animate-hover-btn btn-fill">RTL</a> -->
-    <!-- /RTL  --> 
+    <!-- /RTL  -->
     <div id="wrapper">
         <!-- header -->
         <header id="header" class="header-default">
@@ -62,7 +62,7 @@
         <!-- page-title -->
         <div class="tf-page-title">
             <div class="container-full">
-                <div class="heading text-center">My Account</div>
+                <div class="heading text-center">My Orders</div>
             </div>
         </div>
         <!-- /page-title -->
@@ -74,21 +74,56 @@
                     <div class="col-lg-3">
                         <div class="wrap-sidebar-account">
                             <ul class="my-account-nav">
-                                <li><span class="my-account-nav-item active">Dashboard</span></li>
-                                <li><a href="<?= base_url('main/orderList')?>" class="my-account-nav-item">Orders</a></li>
+                                <li><a href="<?= base_url('main/my_account')?>" class="my-account-nav-item ">Dashboard</a></li>
+                                <li><a href="<?= base_url('main/orderList')?>" class="my-account-nav-item active">Orders</a></li>
+                                <!-- <li><span class="my-account-nav-item">Address</span></li> -->
                                 <li><a href="<?= base_url('main/addressDetails')?>" class="my-account-nav-item">Address</a></li>
-                                <li><a href="my-account-edit.html" class="my-account-nav-item">Account Details</a></li>
-                                <li><a href="<?= base_url('login/logout')?>" class="my-account-nav-item">Logout</a></li>
+                                <li><a href="<?= base_url('main/addressDetails')?>" class="my-account-nav-item">Account Details</a></li>
+                                <!-- <li><a href="my-account-wishlist.html" class="my-account-nav-item">Wishlist</a></li> -->
+                                <li><a href="login.html" class="my-account-nav-item">Logout</a></li>
                             </ul>
                         </div>
+                        
                     </div>
                     <div class="col-lg-9">
-                        <div class="my-account-content account-dashboard">
-                            <div class="mb_60">
-                                <h5 class="fw-5 mb_20">Hello <?= $user['name']?></h5>
-                                <p>
-                                    From your account dashboard you can view your <a class="text_primary" href="my-account-orders.html">recent orders</a>, manage your <a class="text_primary" href="my-account-address.html">shipping and billing address</a>, and <a class="text_primary" href="my-account-edit.html">edit your password and account details</a>.
-                                </p>
+                        <div class="my-account-content account-order">
+                            <div class="wrap-account-order">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th class="fw-6">Order</th>
+                                            <th class="fw-6">Date</th>
+                                            <th class="fw-6">Status</th>
+                                            <th class="fw-6">Total</th>
+                                            <th class="fw-6">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <? if($order){ ?>
+                                        <? foreach($order as $key){ ?>
+                                        <tr class="tf-order-item">
+                                            <td>
+                                                #<?=$key['id']?>
+                                            </td>
+                                            <td>
+                                                <?=dmy($key['order_date'])?>
+                                            </td>
+                                            <td>
+                                                <?=$key['status']?>
+                                            </td>
+                                            <td>
+                                                RM<?=number_format($key['payment'],2)?>
+                                            </td>
+                                            <td>
+                                                <a href="<?= base_url('main/orderDetails/'.$key['id'])?>" class="tf-btn btn-fill animate-hover-btn rounded-0 justify-content-center">
+                                                    <span>View</span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <? } ?>
+                                        <? } ?>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -115,6 +150,21 @@
     </div>
     <!-- /gotop -->
     
+    <!-- sidebar account-->
+    <div class="offcanvas offcanvas-start canvas-filter canvas-sidebar canvas-sidebar-account" id="mbAccount">
+        <div class="canvas-wrapper">
+            <header class="canvas-header">
+                <span class="title">SIDEBAR ACCOUNT</span>
+                <span class="icon-close icon-close-popup" data-bs-dismiss="offcanvas" aria-label="Close"></span>
+            </header>
+            <div class="canvas-body sidebar-mobile-append">
+                 
+            </div>
+            
+        </div>       
+    </div>
+    <!-- End sidebar account -->
+
     <!-- toolbar-bottom -->
     <div class="tf-toolbar-bottom type-1150">
         <div class="toolbar-item">
@@ -694,7 +744,7 @@
                                             <li><a href="<?= base_url('main/my_account')?>" class="sub-nav-link">My account</a></li>
                                             <li><a href="my-account-orders.html" class="sub-nav-link">My order</a></li>
                                             <li><a href="my-account-orders-details.html" class="sub-nav-link">My order details</a></li>
-                                            <li><a href="my-account-address.html" class="sub-nav-link">My address</a></li>
+                                            <li><a href="<?= base_url('main/addressDetails')?>" class="sub-nav-link">My address</a></li>
                                             <li><a href="my-account-edit.html" class="sub-nav-link">My account details</a></li>
                                             <li><a href="my-account-wishlist.html" class="sub-nav-link">My wishlist</a></li>
                                         </ul>
@@ -1534,23 +1584,9 @@
     </div>
     <!-- /modal find_size -->
 
-    <!-- sidebar account-->
-    <div class="offcanvas offcanvas-start canvas-filter canvas-sidebar canvas-sidebar-account" id="mbAccount">
-        <div class="canvas-wrapper">
-            <header class="canvas-header">
-                <span class="title">SIDEBAR ACCOUNT</span>
-                <span class="icon-close icon-close-popup" data-bs-dismiss="offcanvas" aria-label="Close"></span>
-            </header>
-            <div class="canvas-body sidebar-mobile-append"> </div>
-        </div>       
-    </div>
-    <!-- End sidebar account -->
-
     <!-- shoppingCart -->
     <div class="modal fullRight fade modal-shopping-cart" id="modal-my-cart"></div>
     <!-- /shoppingCart -->
-
-
 
     <!-- Javascript -->
     <script type="text/javascript">var base_url = "<?= base_url(); ?>";</script>
@@ -1584,7 +1620,62 @@
                 }
             });
         }
+
+        function addNewAddress()
+        {
+            var formData = $("#formnewAddress").serialize();
+
+            // alert (form);
+
+            $.ajax({
+                url: base_url + 'main/addNewAddress',
+                type: 'POST',
+                data: formData,
+                dataType:"json",
+                success: function(data) {
+                    if (data.status == true) {
+                        alert ('Successfully added !');
+                        location.reload();
+                    } else {
+                        alert ("error on add");
+                    }
+                },
+                error: function() {
+                    alert ('error');
+                }
+            });
+
+        }
+
+        function updateAddress()
+        {
+            var formData = $("#formeditAddress").serialize();
+
+            // alert (form);
+
+            $.ajax({
+                url: base_url + 'main/editAddress',
+                type: 'POST',
+                data: formData,
+                dataType:"json",
+                success: function(data) {
+                    if (data.status == true) {
+                        alert ('Successfully update !');
+                        location.reload();
+                    } else {
+                        alert ("error on add");
+                    }
+                },
+                error: function() {
+                    alert ('error');
+                }
+            });
+   
+        }
+
     </script>
+
+
 </body>
 
 </html>

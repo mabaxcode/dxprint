@@ -69,7 +69,7 @@
         <!-- page-title -->
         <div class="tf-page-title">
             <div class="container-full">
-                <div class="heading text-center">Check Out</div>
+                <div class="heading text-center">Payment</div>
             </div>
         </div>
         <!-- /page-title -->
@@ -79,66 +79,44 @@
             <div class="container">
                 <div class="tf-page-cart-wrap layout-2">
 
-                    <? if($address){ ?>
+                    <? if($address == true){ ?>
 
                     <div class="tf-page-cart-item">
-                        <h5 class="fw-5 mb_20">Shipping Address</h5>
+                        <h5 class="fw-5 mb_20">Payment Methods</h5>
+                        <div class="tf-payment">
+                            <img src="<?= base_url()?>assets/images/payments/p1.png" alt="" width="60px" height="10px;">
+                            <img src="<?= base_url()?>assets/images/payments/p2.png" alt="" width="60px" height="10px;">
+                            <!-- <img src="<?= base_url()?>assets/images/payments/img-2.png" alt="">
+                            <img src="<?= base_url()?>assets/images/payments/img-3.png" alt="">
+                            <img src="<?= base_url()?>assets/images/payments/img-4.png" alt=""> -->
+                        </div>
+                        <br>
                         <? //print_r($users); ?>
-                        <form class="form-checkout">
-                            <div class="box grid-2">
-                                <fieldset class="fieldset">
-                                    <label for="first-name">Fullname</label>
-                                    <input type="text" id="first-name" name="fullname" disabled value="<?= $users['name']?>" onchange="autosavename(this.value, '<?= $user_id?>')">
-                                </fieldset>
-                                <fieldset class="fieldset">
-                                    <label for="last-name">Email</label>
-                                    <input type="text" id="last-name" value="<?= $users['email']?>" disabled>
-                                </fieldset>
+                        <form class="" id="payment-form" action="<?= base_url('main/confirmPayment')?>" method="post" accept-charset="utf-8" data-mailchimp="true">
+                            <div class="tf-field style-1 mb_15">
+                                <input class="tf-field-input tf-input" placeholder="Card Holder Name" type="text" id="property1" name="card_holder_name" required>
+                                <label class="tf-field-label fw-4 text_black-2" for="property1">Card Holder Name *</label>
                             </div>
-                            
-                            <!-- <fieldset class="box fieldset">
-                                <label for="city">Town/City</label>
-                                <input type="text" id="city">
-                            </fieldset> -->
-                            <fieldset class="box fieldset">
-                                    <label for="phone">Phone Number</label>
-                                    <input type="number" id="phone" value="<?= $users['phone_no']?>" disabled>
-                                </fieldset>
-                            <fieldset class="box fieldset">
-                                <label for="address">Address</label>
-                                <input type="text" id="address" disabled value="<?= $address['address']?>">
-                            </fieldset>
-                            <div class="box grid-2">
-                                <fieldset class="fieldset">
-                                    <label for="first-name">Postcode</label>
-                                    <input type="text" id="first-name" value="<?= $address['postcode']?>" disabled>
-                                </fieldset>
-                                <fieldset class="fieldset">
-                                    <label for="last-name">City</label>
-                                    <input type="text" id="last-name" value="<?= $address['city']?>" disabled>
-                                </fieldset>
-                                <!-- <fieldset class="fieldset">
-                                    <label for="last-name">State</label>
-                                    <input type="text" id="last-name" >
-                                </fieldset> -->
-                                <fieldset class="box fieldset">
-                                    <label for="country">State</label>
-                                    <?
-                                    $state = get_ref_code("state", $address['state']);
-                                    ?>
-                                    <input type="text" id="last-name" value="<?= $state?>" disabled>
-                                </fieldset>
-                                
+                            <div class="tf-field style-1 mb_15">
+                                <input class="tf-field-input tf-input" placeholder="Card Number" type="text" id="property1" name="card_no" required>
+                                <label class="tf-field-label fw-4 text_black-2" for="property1">Card Number *</label>
                             </div>
-                            
+                            <div class="tf-field style-1 mb_15">
+                                <input class="tf-field-input tf-input" placeholder="Expiry Date (MM/YY)" type="text" id="property2" name="expiry_date" required>
+                                <label class="tf-field-label fw-4 text_black-2" for="property2">Expiry Date (MM/YY) *</label>
+                            </div>
+                            <div class="tf-field style-1 mb_15">
+                                <input class="tf-field-input tf-input" placeholder="CVV" type="number" id="property3" name="cvv" required>
+                                <label class="tf-field-label fw-4 text_black-2" for="property3">CVV *</label>
+                            </div>
                         </form>
                     </div>
 
                     <? } else { ?>
                     <div class="tf-page-cart-item">
-                        <h5 class="fw-5 mb_20">Shipping Address</h5>
+                        <h5 class="fw-5 mb_20">Can't Proceed To Payment</h5>
                         <form class="form-checkout">
-                            <div class="alert alert-primary" role="alert">
+                            <div class="alert alert-danger" role="alert">
                                 You dont have any shipping address, Please add your your address by click User Account or click <a href="<?= base_url('main/my_account')?>"><b>Here</b></a>
                             </div>
                         </form>
@@ -151,7 +129,6 @@
                             <h5 class="fw-5 mb_20">Your order</h5>
                             <form class="tf-page-cart-checkout widget-wrap-checkout">
                                 <ul class="wrap-checkout-product">
-
 
                                     <? if($carts){ ?>
                                     <? $subtotal = 0; ?>
@@ -185,21 +162,21 @@
                                 <div class="wd-check-payment">
                                     <div class="fieldset-radio mb_20">
                                         <input type="radio" name="payment" id="bank" class="tf-check" checked>
-                                        <label for="bank">Direct bank transfer</label>
+                                        <label for="bank">Credit / Debit Card</label>
                                        
                                     </div>
                                     <!-- <div class="fieldset-radio mb_20">
                                         <input type="radio" name="payment" id="delivery" class="tf-check">
                                         <label for="delivery">Cash on delivery</label>
                                     </div> -->
-                                    <p class="text_black-2 mb_20">Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our <a href="privacy-policy.html" class="text-decoration-underline">privacy policy</a>.</p>
+                                    <p class="text_black-2 mb_20">Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our <a href="#" class="text-decoration-underline">privacy policy</a>.</p>
                                     <!-- <div class="box-checkbox fieldset-radio mb_20">
                                         <input type="checkbox" id="check-agree" class="tf-check">
                                         <label for="check-agree" class="text_black-2">I have read and agree to the website <a href="terms-conditions.html" class="text-decoration-underline">terms and conditions</a>.</label>
                                     </div> -->
                                 </div>
-                                <a class="tf-btn radius-3 btn-fill btn-icon animate-hover-btn justify-content-center" href="<?= base_url('main/placeOrder')?>">Place order</a>
-                                <a class="tf-btn w-100 btn-outline animate-hover-btn rounded-0 justify-content-center" href="<?= base_url('main/addressDetails')?>">Update Shipping Details</a>
+                                <a class="tf-btn radius-3 btn-fill btn-icon animate-hover-btn justify-content-center" onclick="payNow('payment-form');">Pay Now</a>
+                                <a class="tf-btn w-100 btn-outline animate-hover-btn rounded-0 justify-content-center" href="<?= base_url('main/checkout')?>">Cancel</a>
                             </form>
                         </div>
                     </div>
@@ -1858,6 +1835,27 @@
         //         }
         //     });  
         // }
+
+        function payNow(formId)
+        {
+            var form = document.getElementById(formId);
+
+            // Loop through all the elements in the form
+            for (var i = 0; i < form.elements.length; i++) {
+
+                var field = form.elements[i];
+
+                // Check if the field is required and empty
+                if (field.hasAttribute('required') && !field.value.trim()) {
+
+                    alert('Please fill out the ' + field.placeholder + ' field.');
+                    return false; // Return false to prevent form submission
+                }
+            }
+
+            form.submit();
+
+        }
 
     </script>
 </body>

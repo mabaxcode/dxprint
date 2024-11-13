@@ -10,11 +10,9 @@ class Main extends CI_Controller {
         if ($this->session->userdata('user_id')) {
         	$this->user_id = $this->session->userdata('user_id');
         	$this->user_type = $this->session->userdata('user_type');
-        } else {
-        	redirect();
         }
 
-        
+        $this->load->model('Manage_model', 'DbManage');
         
 	}
 
@@ -268,14 +266,108 @@ class Main extends CI_Controller {
 
 			$data['address'] = true;
 
-
 		}
+
+
+		//$data['address'] = get_any_table_row(array('user_id' => $this->user_id), 'address');
+		// $data['info'] = get_any_table_row(array('user_id' => $this->user_id), 'personal_info');
+
+		$data['users'] = get_any_table_row(array('id' => $this->user_id), 'users');
+
+		$data['total_in_cart'] = count_any_table(array('user_id' => $this->user_id, 'status' => 'CART'), 'product_order');
+
+		$data['list_tshirt_panjang'] = get_any_table_array(array('category' => '1'), 'product');
+		$data['list_tshirt_pendek'] = get_any_table_array(array('category' => '2'), 'product');
+		$data['list_jersey'] = get_any_table_array(array('category' => '3'), 'product');
+		$data['list_uniform'] = get_any_table_array(array('category' => '4'), 'product');
+
+		$data['user_id'] = $this->user_id;
+		$data['user_type'] = $this->user_type;
+
+		$data['carts'] = get_any_table_array(array('user_id' => $this->user_id, 'status' => 'CART'), 'product_order');
+
 
 		$this->load->view('place_order', $data);
 		
 
 	}
 
+	function confirmPayment($data=false)
+	{
+		$post = $this->input->post();
+		// echo "<pre>"; print_r($post); echo "</pre>"; exit;
 
+		$data['now'] = display_current_dt();
+		$data['card_no'] = $post['card_no'];
+		$data['card_holder_name'] = $post['card_holder_name'];
+		$data['expiry_date'] = $post['expiry_date'];
+		$data['cvv'] = $post['cvv'];
+
+		$data['users'] = get_any_table_row(array('id' => $this->user_id), 'users');
+
+		$data['total_in_cart'] = count_any_table(array('user_id' => $this->user_id, 'status' => 'CART'), 'product_order');
+
+		$data['list_tshirt_panjang'] = get_any_table_array(array('category' => '1'), 'product');
+		$data['list_tshirt_pendek'] = get_any_table_array(array('category' => '2'), 'product');
+		$data['list_jersey'] = get_any_table_array(array('category' => '3'), 'product');
+		$data['list_uniform'] = get_any_table_array(array('category' => '4'), 'product');
+
+		$data['user_id'] = $this->user_id;
+		$data['user_type'] = $this->user_type;
+
+		$data['carts'] = get_any_table_array(array('user_id' => $this->user_id, 'status' => 'CART'), 'product_order');
+
+		$this->load->view('payment-confirm', $data);
+
+	}
+
+	function doPayment($data=false)
+	{	
+		// product to be paid
+		$order = get_any_table_array(array('user_id' => $this->user_id, 'status' => 'CART'), 'product_order');
+
+		foreach($order as $key){
+
+			$product    = get_any_table_row(array('product_id' => $key['product_id']), 'product');
+			$per_unit   = $product['price'];
+            $total_paid = $per_unit * $key['quantity'];
+
+            $update = array('payment' => $total_paid, 'status' => 'PAID', 'order_date' => current_dt());
+            $where  = array('id' => $key['id']);
+            update_any_table($update, $where, 'product_order');
+
+            # insert log
+            $logdata = array('item_id' => $key['id'], 'user_id' => $this->user_id, 'create_dt' => current_dt(), 'log_comment' => 'Order Placed');
+            insert_any_table($logdata, 'log');
+		}
+
+		$response = array('status' => true);
+		echo encode($response);
+	}
+
+	function orderList($data=false)
+	{
+
+		$data['order'] = get_any_table_array(array('user_id' => $this->user_id, 'payment !=' => '0', 'status !=' => 'CART'), 'product_order');
+
+		$this->load->view('order_list', $data);
+	}
+
+	function orderDetails($id)
+	{	
+
+		$data['item'] = get_any_table_row(array('id' => $id), 'product_order');
+
+		$data['product'] = get_any_table_row(array('product_id' => $data['item']['product_id']), 'product');
+
+		$data['courier'] = get_any_table_row(array('module' => 'courier'), 'ref_code');
+
+		$data['address'] = get_any_table_row(array('user_id' => $this->user_id), 'address');
+
+		$data['log'] = $this->DbManage->get_order_log($id);
+		// get_any_table_array(array('item_id' => $id), 'log');
+
+		$this->load->view('order_detail', $data);
+	}
 
 }

@@ -176,13 +176,39 @@ function get_ref_code($module, $code)
     }
 }
 
-/*
+function dmy($p_ymd, $p_sep = "/")
+{
+    $yy = substr($p_ymd, 0, 4);
+    $mm = substr($p_ymd, 5, 2);
+    $dd = substr($p_ymd, 8, 2);
+
+    $r_dmy = $dd . $p_sep . $mm . $p_sep . $yy;
+
+    if ($r_dmy == $p_sep . $p_sep or $r_dmy == "00" . $p_sep . "00" . $p_sep . "0000") {
+        $r_dmy = "";
+    }
+
+    return $r_dmy;
+}
 
 function display_current_dt()
 {
     $now = date('d F Y');
     return $now;
 }
+
+function datetime($date)
+{
+    $dateTime = new DateTime($date);
+
+    $formattedDateTime = $dateTime->format('d-m-Y g:i A');
+
+    return $formattedDateTime;
+}
+
+/*
+
+
 
 
 
@@ -245,9 +271,7 @@ function get_any_table_array($data_where = false, $table = false, $col_sort = fa
     }
 }
 
-function getRandomString($n) {
-    return bin2hex(random_bytes($n / 2));
-}
+
 
 function get_keytab_value($key)
 {
@@ -482,20 +506,7 @@ function count_student_complete($loopStudents, $homework_id)
     return $count;
 }
 
-function dmy($p_ymd, $p_sep = "/")
-{
-    $yy = substr($p_ymd, 0, 4);
-    $mm = substr($p_ymd, 5, 2);
-    $dd = substr($p_ymd, 8, 2);
 
-    $r_dmy = $dd . $p_sep . $mm . $p_sep . $yy;
-
-    if ($r_dmy == $p_sep . $p_sep or $r_dmy == "00" . $p_sep . "00" . $p_sep . "0000") {
-        $r_dmy = "";
-    }
-
-    return $r_dmy;
-}
 */
 
 

@@ -28,7 +28,7 @@
                 </li>
             </ul>
         </li>
-        <li class="menu-item has-children">
+        <li class="menu-item has-children <? if($this->uri->segment(2) == 'orderList' || $this->uri->segment(2) == 'orderDetails'){ echo 'active'; } ?>">
             <a href="javascript:void(0);" class="menu-item-button">
                 <div class="icon">
                     <svg width="24" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -38,9 +38,9 @@
                 <div class="text">Order</div>
             </a>
             <ul class="sub-menu">
-                <li class="sub-menu-item">
-                    <a href="oder-list.html" class="">
-                        <div class="text">Order list</div>
+                <li class="sub-menu-item <? if($this->uri->segment(2) == 'orderList'){ echo 'active'; } ?>">
+                    <a href="<? echo base_url('manage/orderList'); ?>" class="">
+                        <div class="text">Order List</div>
                     </a>
                 </li>
                 <li class="sub-menu-item">

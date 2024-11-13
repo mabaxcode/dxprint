@@ -6,7 +6,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>DXPRINT</title>
+    <title>Ecomus - Ultimate HTML</title>
 
     <meta name="author" content="themesflat.com">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -18,7 +18,7 @@
    <link rel="stylesheet" href="<?= base_url()?>assets/css/bootstrap.min.css">
    <link rel="stylesheet" href="<?= base_url()?>assets/css/swiper-bundle.min.css">
    <link rel="stylesheet" href="<?= base_url()?>assets/css/animate.css">
-   <link rel="stylesheet" type="text/css" href="<?= base_url()?>assets/css/styles.css"/>
+   <link rel="stylesheet"type="text/css" href="<?= base_url()?>assets/css/styles.css"/>
 
     <!-- Favicon and Touch Icons  -->
     <link rel="shortcut icon" href="<?= base_url()?>assets/images/logo/favicon.png">
@@ -29,7 +29,14 @@
 <body class="preload-wrapper">
     <!-- RTL -->
     <!-- <a href="javascript:void(0);" id="toggle-rtl" class="tf-btn animate-hover-btn btn-fill">RTL</a> -->
-    <!-- /RTL  --> 
+    <!-- /RTL  -->
+    <!-- preload -->
+    <div class="preload preload-container">
+        <div class="preload-logo">
+            <div class="spinner"></div>
+        </div>
+    </div>
+    <!-- /preload -->
     <div id="wrapper">
         <!-- header -->
         <header id="header" class="header-default">
@@ -62,47 +69,222 @@
         <!-- page-title -->
         <div class="tf-page-title">
             <div class="container-full">
-                <div class="heading text-center">My Account</div>
+                <div class="heading text-center">Payment Confirmation</div>
             </div>
         </div>
         <!-- /page-title -->
         
-        <!-- page-cart -->
-        <section class="flat-spacing-11">
+         <section class="flat-spacing-11">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-3">
-                        <div class="wrap-sidebar-account">
-                            <ul class="my-account-nav">
-                                <li><span class="my-account-nav-item active">Dashboard</span></li>
-                                <li><a href="<?= base_url('main/orderList')?>" class="my-account-nav-item">Orders</a></li>
-                                <li><a href="<?= base_url('main/addressDetails')?>" class="my-account-nav-item">Address</a></li>
-                                <li><a href="my-account-edit.html" class="my-account-nav-item">Account Details</a></li>
-                                <li><a href="<?= base_url('login/logout')?>" class="my-account-nav-item">Logout</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-9">
-                        <div class="my-account-content account-dashboard">
-                            <div class="mb_60">
-                                <h5 class="fw-5 mb_20">Hello <?= $user['name']?></h5>
-                                <p>
-                                    From your account dashboard you can view your <a class="text_primary" href="my-account-orders.html">recent orders</a>, manage your <a class="text_primary" href="my-account-address.html">shipping and billing address</a>, and <a class="text_primary" href="my-account-edit.html">edit your password and account details</a>.
-                                </p>
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <h5 class="fw-5 mb_20">Payment confirmation</h5>
+                        <? if($carts){ ?>
+                        <? $subtotal = 0; ?>
+                        <? foreach($carts as $cart){ ?>  
+                        <? $product = get_any_table_row(array('product_id' => $cart['product_id']), 'product'); ?>
+                        <?
+                            $per_unit = $product['price'];
+                            $price = $per_unit * $cart['quantity'];
+                        ?>
+                        <? $subtotal = $subtotal + $price; ?>
+                        <? } ?>
+                        <? } ?>
+                        <div class="tf-page-cart-checkout">
+                            <div class="d-flex align-items-center justify-content-between mb_15">
+                                <div class="fs-18">Date</div>
+                                <p><?=$now?></p>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-between mb_15">
+                                <div class="fs-18">Payment method</div>
+                                <p>Credit/Debit Card</p>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-between mb_15">
+                                <div class="fs-18">Card number</div>
+                                <p><?=$card_no?></p>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-between mb_15">
+                                <div class="fs-18">Cardholder name</div>
+                                <p><?=$card_holder_name?></p>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-between mb_15">
+                                <div class="fs-18">Email</div>
+                                <p><?=$users['email']?></p>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-between mb_15">
+                                <div class="fs-18">Phone</div>
+                                <p><?=$users['phone_no']?></p>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-between mb_24">
+                                <div class="fs-22 fw-6">Subtotal</div>
+                                <span class="total-value">RM<?= number_format($subtotal,2)?></span>
+                            </div>
+                            <div class="d-flex gap-10">
+                                <a href="<?= base_url('main/placeOrder')?>" class="tf-btn w-100 btn-outline animate-hover-btn rounded-0 justify-content-center">
+                                    <span>Cancel Payment</span>
+                                </a>
+                                <a href="" class="tf-btn w-100 btn-fill animate-hover-btn radius-3 justify-content-center" onclick="doPayment();">
+                                    <span>Confirm Payment</span>
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- page-cart -->
-
-        <div class="btn-sidebar-account">
-            <button data-bs-toggle="offcanvas" data-bs-target="#mbAccount" aria-controls="offcanvas"><i class="icon icon-sidebar-2"></i></button>
-        </div>
 
         <!-- footer -->
-        <? $this->load->view('footer'); ?>
+        <footer id="footer" class="footer">
+            <div class="footer-wrap">
+                <div class="footer-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-3 col-md-6 col-12">
+                                <div class="footer-infor">
+                                    <div class="footer-logo">
+                                        <a href="index.html">
+                                            <img src="images/logo/logo.svg" alt="">
+                                        </a>
+                                    </div>
+                                    <ul>
+                                        <li>
+                                            <p>Address: 1234 Fashion Street, Suite 567, <br> New York, NY 10001</p>
+                                        </li>
+                                        <li>
+                                            <p>Email: <a href="#">info@fashionshop.com</a></p>
+                                        </li>
+                                        <li>
+                                            <p>Phone: <a href="#">(212) 555-1234</a></p>
+                                        </li>
+                                    </ul>
+                                    <a href="contact-1.html" class="tf-btn btn-line">Get direction<i class="icon icon-arrow1-top-left"></i></a>
+                                    <ul class="tf-social-icon d-flex gap-10">
+                                        <li><a href="#" class="box-icon w_34 round social-facebook border-line-black"><i class="icon fs-14 icon-fb"></i></a></li>
+                                        <li><a href="#" class="box-icon w_34 round social-twiter border-line-black"><i class="icon fs-12 icon-Icon-x"></i></a></li>
+                                        <li><a href="#" class="box-icon w_34 round social-instagram border-line-black"><i class="icon fs-14 icon-instagram"></i></a></li>
+                                        <li><a href="#" class="box-icon w_34 round social-tiktok border-line-black"><i class="icon fs-14 icon-tiktok"></i></a></li>
+                                        <li><a href="#" class="box-icon w_34 round social-pinterest border-line-black"><i class="icon fs-14 icon-pinterest-1"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6 col-12 footer-col-block">
+                                <div class="footer-heading footer-heading-desktop">
+                                    <h6>Help</h6>
+                                </div>
+                                <div class="footer-heading footer-heading-moblie">
+                                    <h6>Help</h6>
+                                </div>
+                                <ul class="footer-menu-list tf-collapse-content">
+                                    <li>
+                                        <a href="privacy-policy.html" class="footer-menu_item">Privacy Policy</a>
+                                    </li>
+                                    <li> 
+                                        <a href="delivery-return.html" class="footer-menu_item">  Returns + Exchanges </a>
+                                    </li>
+                                    <li> 
+                                        <a href="shipping-delivery.html" class="footer-menu_item">Shipping</a>
+                                    </li>
+                                    <li> 
+                                        <a href="terms-conditions.html" class="footer-menu_item">Terms &amp; Conditions</a>
+                                    </li>
+                                    <li> 
+                                        <a href="faq-1.html" class="footer-menu_item">FAQ’s</a>
+                                    </li>
+                                    <li> 
+                                        <a href="compare.html" class="footer-menu_item">Compare</a>
+                                    </li>
+                                    <li> 
+                                        <a href="wishlist.html" class="footer-menu_item">My Wishlist</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-xl-3 col-md-6 col-12 footer-col-block">
+                                <div class="footer-heading footer-heading-desktop">
+                                    <h6>About us</h6>
+                                </div>
+                                <div class="footer-heading footer-heading-moblie">
+                                    <h6>About us</h6>
+                                </div>
+                                <ul class="footer-menu-list tf-collapse-content">
+                                    <li>
+                                        <a href="about-us.html" class="footer-menu_item">Our Story</a>
+                                    </li>
+                                    <li> 
+                                        <a href="our-store.html" class="footer-menu_item">Visit Our Store</a>
+                                    </li>
+                                    <li> 
+                                        <a href="contact-1.html" class="footer-menu_item">Contact Us</a>
+                                    </li>
+                                    <li> 
+                                        <a href="login.html" class="footer-menu_item">Account</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-xl-3 col-md-6 col-12">
+                                <div class="footer-newsletter footer-col-block">
+                                    <div class="footer-heading footer-heading-desktop">
+                                        <h6>Sign Up for Email</h6>
+                                    </div>
+                                    <div class="footer-heading footer-heading-moblie">
+                                        <h6>Sign Up for Email</h6>
+                                    </div>
+                                    <div class="tf-collapse-content">
+                                        <div class="footer-menu_item">Sign up to get first dibs on new arrivals, sales, exclusive content, events and more!</div>
+                                        <form class="form-newsletter" id="subscribe-form" action="#" method="post" accept-charset="utf-8" data-mailchimp="true">
+                                            <div id="subscribe-content">
+                                                <fieldset class="email">
+                                                    <input type="email" name="email-form" id="subscribe-email" placeholder="Enter your email...." tabindex="0" aria-required="true">
+                                                </fieldset>
+                                                <div class="button-submit">
+                                                    <button id="subscribe-button" class="tf-btn btn-sm radius-3 btn-fill btn-icon animate-hover-btn" type="button">Subscribe<i class="icon icon-arrow1-top-left"></i></button>
+                                                </div>
+                                            </div>
+                                            <div id="subscribe-msg"></div>
+                                        </form>
+                                        <div class="tf-cur">
+                                            <div class="tf-currencies">
+                                                <select class="image-select center style-default type-currencies">
+                                                    <option data-thumbnail="images/country/fr.svg">EUR <span>€ | France</span></option>
+                                                    <option data-thumbnail="images/country/de.svg">EUR <span>€ | Germany</span></option>
+                                                    <option selected data-thumbnail="images/country/us.svg">USD <span>$ | United States</span></option>
+                                                    <option data-thumbnail="images/country/vn.svg">VND <span>₫ | Vietnam</span></option>
+                                                </select>
+                                            </div>
+                                            <div class="tf-languages">
+                                                <select class="image-select center style-default type-languages">
+                                                    <option>English</option>
+                                                    <option>العربية</option>
+                                                    <option>简体中文</option>
+                                                    <option>اردو</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="footer-bottom-wrap d-flex gap-20 flex-wrap justify-content-between align-items-center">
+                                    <div class="footer-menu_item">© 2024 Ecomus Store. All Rights Reserved</div>
+                                    <div class="tf-payment">
+                                        <img src="images/payments/visa.png" alt="">
+                                        <img src="images/payments/img-1.png" alt="">
+                                        <img src="images/payments/img-2.png" alt="">
+                                        <img src="images/payments/img-3.png" alt="">
+                                        <img src="images/payments/img-4.png" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
         <!-- /footer -->
 
     </div>
@@ -691,7 +873,7 @@
                                     </a>
                                     <div id="sub-account" class="collapse">
                                         <ul class="sub-nav-menu sub-menu-level-2">
-                                            <li><a href="<?= base_url('main/my_account')?>" class="sub-nav-link">My account</a></li>
+                                            <li><a href="my-account.html" class="sub-nav-link">My account</a></li>
                                             <li><a href="my-account-orders.html" class="sub-nav-link">My order</a></li>
                                             <li><a href="my-account-orders-details.html" class="sub-nav-link">My order details</a></li>
                                             <li><a href="my-account-address.html" class="sub-nav-link">My address</a></li>
@@ -1128,11 +1310,11 @@
                     <form class="">
                         <div class="tf-field style-1">
                             <input class="tf-field-input tf-input" placeholder=" " type="text"  name="">
-                            <label class="tf-field-label" for="">First name</label>
+                            <label class="tf-field-label" for="">Fullname</label>
                         </div>
                         <div class="tf-field style-1">
                             <input class="tf-field-input tf-input" placeholder=" " type="text"  name="">
-                            <label class="tf-field-label" for="">Last name</label>
+                            <label class="tf-field-label" for="">Email</label>
                         </div>
                         <div class="tf-field style-1">
                             <input class="tf-field-input tf-input" placeholder=" " type="email"  name="">
@@ -1534,22 +1716,9 @@
     </div>
     <!-- /modal find_size -->
 
-    <!-- sidebar account-->
-    <div class="offcanvas offcanvas-start canvas-filter canvas-sidebar canvas-sidebar-account" id="mbAccount">
-        <div class="canvas-wrapper">
-            <header class="canvas-header">
-                <span class="title">SIDEBAR ACCOUNT</span>
-                <span class="icon-close icon-close-popup" data-bs-dismiss="offcanvas" aria-label="Close"></span>
-            </header>
-            <div class="canvas-body sidebar-mobile-append"> </div>
-        </div>       
-    </div>
-    <!-- End sidebar account -->
-
-    <!-- shoppingCart -->
+     <!-- shoppingCart -->
     <div class="modal fullRight fade modal-shopping-cart" id="modal-my-cart"></div>
     <!-- /shoppingCart -->
-
 
 
     <!-- Javascript -->
@@ -1568,7 +1737,6 @@
     <script type="text/javascript" src="<?= base_url()?>assets/js/main.js"></script>
 
     <script type="text/javascript">
-
         function viewMyCart(userid)
         {
             $.ajax({
@@ -1584,6 +1752,59 @@
                 }
             });
         }
+
+        function autosavename(name, userid)
+        {
+            $.ajax({
+                url: base_url + 'main/autoSaveName',
+                type: 'POST',
+                data: {name:name, userid:userid},
+                success: function(data) {
+                    // $('#modal-my-cart').html(data);
+                    // $("#modal-my-cart").modal('show');
+                },
+                error: function() {
+                    alert ('error');
+                }
+            });   
+        }
+
+        // function placeOrder()
+        // {
+        //     $.ajax({
+        //         url: base_url + 'main/placeOrder',
+        //         type: 'POST',
+        //         success: function(data) {
+        //             // $('#modal-my-cart').html(data);
+        //             // $("#modal-my-cart").modal('show');
+        //         },
+        //         error: function() {
+        //             alert ('error');
+        //         }
+        //     });  
+        // }
+
+        function doPayment()
+        {   
+            $.ajax({
+                url: base_url + 'main/doPayment',
+                type: 'POST',
+                // data: {orderkey:orderkey},
+                dataType:"json",
+                success: function(data) {
+                    if (data.status == true) {
+                        alert ("Success ! Your payment has been received, Thank You.");
+                        window.location.href = base_url + 'main/my_account';
+                    } else {
+                        alert ("Payment failed to complete"); return;
+                    }
+                },
+                error: function() {
+                    alert ('error');
+                }
+            });  
+        }
+
     </script>
 </body>
 

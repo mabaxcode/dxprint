@@ -11,6 +11,8 @@ class Manage extends CI_Controller {
         if ( $this->session->userdata('user_type') <> "ADMIN") {
         	redirect();
         }
+
+
 	}
 
 	function addProduct($data=false)
@@ -27,6 +29,12 @@ class Manage extends CI_Controller {
 	{	
 		$data['products'] = $this->DbManage->get_all_product();
 		$this->load->view('admin/product-list', $data);
+	}
+
+	function orderList($data=false)
+	{
+		$data['orders'] = $this->DbManage->get_all_order();
+		$this->load->view('admin/order-list', $data);
 	}
 
 	function upload_product_img($data=false)
@@ -134,4 +142,65 @@ class Manage extends CI_Controller {
 		redirect('manage/addProduct');
 
 	}
+
+	function shippedModal($data=false)
+	{
+		$data['id'] = $this->input->post('id');
+		$this->load->view('admin/modal-ship-item', $data);
+
+	}
+
+	function packaging($data=false)
+	{
+		$update = array('status' => 'PACKAGING');
+		$where = array('id' => $this->input->post('id'));
+		update_any_table($update, $where, 'product_order');
+
+		# insert log
+		$idd = $this->input->post('id');
+		$logdata = array('item_id' => $idd, 'create_dt' => current_dt(), 'log_comment' => 'Product Packaging');
+        insert_any_table($logdata, 'log');
+	}
+
+
+	public function proceedShipping($data=false)
+	{
+		// code...
+		$post = $this->input->post();
+
+		$id = $post['id'];
+		$tracking_no = $post['trackingno'];
+
+		$update = array('status' => 'SHIPPED', 'tracking_no' => $tracking_no);
+		$where = array('id' => $this->input->post('id'));
+		update_any_table($update, $where, 'product_order');
+
+		$givenDate = date('Y-m-d');
+
+		$date = new DateTime($givenDate);
+
+		$date->modify('+7 days');
+
+		$estimated = $date->format('Y-m-d');
+
+
+		# insert log
+
+		$logdata = array(
+			'item_id' => $id, 
+			'create_dt' => current_dt(), 
+			'log_comment' => 'Product Shipped',
+			'service' => 'J&T Express',
+			'estimate_date' => $estimated,
+			'tracking_no' => $tracking_no,
+			'display_sub' => '1',
+		);
+
+		// print_r($logdata); exit;
+        insert_any_table($logdata, 'log');
+	}
+
+
+
+
 }

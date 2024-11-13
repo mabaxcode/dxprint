@@ -18,7 +18,7 @@
    <link rel="stylesheet" href="<?= base_url()?>assets/css/bootstrap.min.css">
    <link rel="stylesheet" href="<?= base_url()?>assets/css/swiper-bundle.min.css">
    <link rel="stylesheet" href="<?= base_url()?>assets/css/animate.css">
-   <link rel="stylesheet" type="text/css" href="<?= base_url()?>assets/css/styles.css"/>
+   <link rel="stylesheet"type="text/css" href="<?= base_url()?>assets/css/styles.css"/>
 
     <!-- Favicon and Touch Icons  -->
     <link rel="shortcut icon" href="<?= base_url()?>assets/images/logo/favicon.png">
@@ -29,7 +29,7 @@
 <body class="preload-wrapper">
     <!-- RTL -->
     <!-- <a href="javascript:void(0);" id="toggle-rtl" class="tf-btn animate-hover-btn btn-fill">RTL</a> -->
-    <!-- /RTL  --> 
+    <!-- /RTL  -->
     <div id="wrapper">
         <!-- header -->
         <header id="header" class="header-default">
@@ -62,7 +62,7 @@
         <!-- page-title -->
         <div class="tf-page-title">
             <div class="container-full">
-                <div class="heading text-center">My Account</div>
+                <div class="heading text-center">My Orders</div>
             </div>
         </div>
         <!-- /page-title -->
@@ -74,21 +74,174 @@
                     <div class="col-lg-3">
                         <div class="wrap-sidebar-account">
                             <ul class="my-account-nav">
-                                <li><span class="my-account-nav-item active">Dashboard</span></li>
-                                <li><a href="<?= base_url('main/orderList')?>" class="my-account-nav-item">Orders</a></li>
+                                <li><a href="<?= base_url('main/my_account')?>" class="my-account-nav-item ">Dashboard</a></li>
+                                <li><a href="<?= base_url('main/orderList')?>" class="my-account-nav-item active">Orders</a></li>
+                                <!-- <li><span class="my-account-nav-item">Address</span></li> -->
                                 <li><a href="<?= base_url('main/addressDetails')?>" class="my-account-nav-item">Address</a></li>
-                                <li><a href="my-account-edit.html" class="my-account-nav-item">Account Details</a></li>
-                                <li><a href="<?= base_url('login/logout')?>" class="my-account-nav-item">Logout</a></li>
+                                <li><a href="<?= base_url('main/addressDetails')?>" class="my-account-nav-item">Account Details</a></li>
+                                <!-- <li><a href="my-account-wishlist.html" class="my-account-nav-item">Wishlist</a></li> -->
+                                <li><a href="login.html" class="my-account-nav-item">Logout</a></li>
                             </ul>
                         </div>
+                        
                     </div>
                     <div class="col-lg-9">
-                        <div class="my-account-content account-dashboard">
-                            <div class="mb_60">
-                                <h5 class="fw-5 mb_20">Hello <?= $user['name']?></h5>
-                                <p>
-                                    From your account dashboard you can view your <a class="text_primary" href="my-account-orders.html">recent orders</a>, manage your <a class="text_primary" href="my-account-address.html">shipping and billing address</a>, and <a class="text_primary" href="my-account-edit.html">edit your password and account details</a>.
-                                </p>
+                        <div class="wd-form-order">
+                            <div class="order-head">
+                                <!-- <figure class="img-product">
+                                    <img src="images/products/brown.jpg" alt="product">
+                                </figure> -->
+                                <div class="content">
+                                    <? if($item['status'] <> 'COMPLETE'){ ?>
+                                    <div class="badge">In Progress</div>
+                                    <? } else { ?>
+                                    <div class="badge">COMPLETE</div>
+                                    <? } ?>
+                                    <h6 class="mt-8 fw-5">Order #<?= $item['id']?></h6>
+                                </div>
+                            </div>
+                            <div class="tf-grid-layout md-col-2 gap-15">
+                                <div class="item">
+                                    <div class="text-2 text_black-2">Item</div>
+                                    <div class="text-2 mt_4 fw-6"><?=ucfirst($product['name'])?></div>
+                                </div>
+                                <div class="item">
+                                    <div class="text-2 text_black-2">Courier</div>
+                                    <div class="text-2 mt_4 fw-6"><?=$courier['code_desc']?></div>
+                                </div>
+                                <div class="item">
+                                    <div class="text-2 text_black-2">Start Time</div>
+                                    <div class="text-2 mt_4 fw-6"><?=dmy($item['order_date'])?></div>
+                                </div>
+                                <div class="item">
+                                    <div class="text-2 text_black-2">Address</div>
+                                    <div class="text-2 mt_4 fw-6"><?=$address['address']?><br><?=$address['postcode']?>,<?=$address['city']?><br><?=get_ref_code("state", $address['state'])?></div>
+                                </div>
+                            </div>
+                            <div class="widget-tabs style-has-border widget-order-tab">
+                                <ul class="widget-menu-tab">
+                                    <li class="item-title active">
+                                        <span class="inner">Order History</span>
+                                    </li>
+                                    <li class="item-title">
+                                        <span class="inner">Item Details</span>
+                                    </li>
+                                    <li class="item-title">
+                                        <span class="inner">Courier</span>
+                                    </li>
+                                    <!-- <li class="item-title">
+                                        <span class="inner">Receiver</span>
+                                    </li> -->
+                                </ul>
+                                <div class="widget-content-tab">
+                                    <div class="widget-content-inner active">
+                                        <div class="widget-timeline">
+                                            <ul class="timeline">
+                                                <? if($log){ ?>
+                                                <? foreach($log as $logorder){ ?>
+                                                <li>
+                                                    <div class="timeline-badge success"></div>
+                                                    <div class="timeline-box">
+                                                        <a class="timeline-panel" href="javascript:void(0);">
+                                                            <div class="text-2 fw-6"><?=$logorder['log_comment']?></div>
+                                                            <span><?=datetime($logorder['create_dt'])?></span>
+                                                        </a>
+                                                        <? if($logorder['display_sub'] == '1'){ ?>
+                                                        <p><strong>Courier Service : </strong><?=$logorder['service']?></p>
+                                                        <p><strong>Estimated Delivery Date : </strong><?=dmy($logorder['estimate_date'])?></p>
+                                                        <? } ?>
+                                                    </div>
+                                                </li>
+                                                <? } ?>
+                                                <? } ?>
+                                                <!-- <li>
+                                                    <div class="timeline-badge success"></div>
+                                                    <div class="timeline-box">
+                                                        <a class="timeline-panel" href="javascript:void(0);">
+                                                            <div class="text-2 fw-6">Product Shipped</div>
+                                                            <span>10/07/2024 4:30pm</span>
+                                                        </a>
+                                                        <p><strong>Courier Service : </strong>FedEx World Service Center</p>
+                                                        <p><strong>Estimated Delivery Date : </strong>12/07/2024</p>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="timeline-badge success"></div>
+                                                    <div class="timeline-box">
+                                                        <a class="timeline-panel" href="javascript:void(0);">
+                                                            <div class="text-2 fw-6">Product Shipped</div>
+                                                            <span>10/07/2024 4:30pm</span>
+                                                        </a>
+                                                        <p><strong>Tracking Number : </strong>2307-3215-6759</p>
+                                                        <p><strong>Warehouse : </strong>T-Shirt 10b</p>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="timeline-badge"></div>
+                                                    <div class="timeline-box">
+                                                        <a class="timeline-panel" href="javascript:void(0);">
+                                                            <div class="text-2 fw-6">Product Packaging</div>
+                                                            <span>12/07/2024 4:34pm</span>
+                                                        </a>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="timeline-badge"></div>
+                                                    <div class="timeline-box">
+                                                        <a class="timeline-panel" href="javascript:void(0);">
+                                                            <div class="text-2 fw-6">Order Placed</div>
+                                                            <span>11/07/2024 2:36pm</span>
+                                                        </a>
+                                                    </div>
+                                                </li> -->
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="widget-content-inner">
+                                        <div class="order-head">
+                                            <!-- <figure class="img-product">
+                                                <img src="images/products/brown.jpg" alt="product">
+                                            </figure> -->
+                                            <div class="content">
+                                                <div class="text-2 fw-6"><?=ucfirst($product['name'])?></div>
+                                                <div class="mt_4"><span class="fw-6">Price :</span> RM<?=number_format($product['price'],2)?></div>
+                                                <div class="mt_4"><span class="fw-6">Size :</span> <?=$item['size']?></div>
+                                                <div class="mt_4"><span class="fw-6">Quantity :</span> <?=$item['quantity']?></div>
+                                            </div>
+                                        </div>
+                                        <ul>
+                                            <!-- <li class="d-flex justify-content-between text-2">
+                                                <span>Total Price</span>
+                                                <span class="fw-6">$28.95</span>
+                                            </li>
+                                            <li class="d-flex justify-content-between text-2 mt_4 pb_8 line">
+                                                <span>Total Discounts</span>
+                                                <span class="fw-6">$10</span>
+
+                                            </li> -->
+                                            <li class="d-flex justify-content-between text-2 mt_8">
+                                                <span>Order Total</span>
+                                                <span class="fw-6">RM<?=number_format($item['payment'],2)?></span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="widget-content-inner">
+                                        <p>J&T Express is an express delivery company based on top-notch modernized e-technology with tagline “Express Your Online Business” which positions their brand as the core of e-commerce express.</p>
+                                    </div>
+                                    <?/*
+                                    <div class="widget-content-inner">
+                                        <p class="text-2 text_success">Thank you Your order has been received</p>
+                                        <ul class="mt_20">
+                                            <li>Order Number : <span class="fw-7">#17493</span></li>
+                                            <li>Date : <span class="fw-7"> 17/07/2024, 02:34pm</span></li>
+                                            <li>Total : <span class="fw-7">$18.95</span></li>
+                                            <li>Payment Methods : <span class="fw-7">Cash on Delivery</span></li>
+
+                                        </ul>
+                                    </div>
+                                    */?>
+
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -115,6 +268,21 @@
     </div>
     <!-- /gotop -->
     
+    <!-- sidebar account-->
+    <div class="offcanvas offcanvas-start canvas-filter canvas-sidebar canvas-sidebar-account" id="mbAccount">
+        <div class="canvas-wrapper">
+            <header class="canvas-header">
+                <span class="title">SIDEBAR ACCOUNT</span>
+                <span class="icon-close icon-close-popup" data-bs-dismiss="offcanvas" aria-label="Close"></span>
+            </header>
+            <div class="canvas-body sidebar-mobile-append">
+                 
+            </div>
+            
+        </div>       
+    </div>
+    <!-- End sidebar account -->
+
     <!-- toolbar-bottom -->
     <div class="tf-toolbar-bottom type-1150">
         <div class="toolbar-item">
@@ -694,7 +862,7 @@
                                             <li><a href="<?= base_url('main/my_account')?>" class="sub-nav-link">My account</a></li>
                                             <li><a href="my-account-orders.html" class="sub-nav-link">My order</a></li>
                                             <li><a href="my-account-orders-details.html" class="sub-nav-link">My order details</a></li>
-                                            <li><a href="my-account-address.html" class="sub-nav-link">My address</a></li>
+                                            <li><a href="<?= base_url('main/addressDetails')?>" class="sub-nav-link">My address</a></li>
                                             <li><a href="my-account-edit.html" class="sub-nav-link">My account details</a></li>
                                             <li><a href="my-account-wishlist.html" class="sub-nav-link">My wishlist</a></li>
                                         </ul>
@@ -1534,23 +1702,9 @@
     </div>
     <!-- /modal find_size -->
 
-    <!-- sidebar account-->
-    <div class="offcanvas offcanvas-start canvas-filter canvas-sidebar canvas-sidebar-account" id="mbAccount">
-        <div class="canvas-wrapper">
-            <header class="canvas-header">
-                <span class="title">SIDEBAR ACCOUNT</span>
-                <span class="icon-close icon-close-popup" data-bs-dismiss="offcanvas" aria-label="Close"></span>
-            </header>
-            <div class="canvas-body sidebar-mobile-append"> </div>
-        </div>       
-    </div>
-    <!-- End sidebar account -->
-
     <!-- shoppingCart -->
     <div class="modal fullRight fade modal-shopping-cart" id="modal-my-cart"></div>
     <!-- /shoppingCart -->
-
-
 
     <!-- Javascript -->
     <script type="text/javascript">var base_url = "<?= base_url(); ?>";</script>
@@ -1584,7 +1738,62 @@
                 }
             });
         }
+
+        function addNewAddress()
+        {
+            var formData = $("#formnewAddress").serialize();
+
+            // alert (form);
+
+            $.ajax({
+                url: base_url + 'main/addNewAddress',
+                type: 'POST',
+                data: formData,
+                dataType:"json",
+                success: function(data) {
+                    if (data.status == true) {
+                        alert ('Successfully added !');
+                        location.reload();
+                    } else {
+                        alert ("error on add");
+                    }
+                },
+                error: function() {
+                    alert ('error');
+                }
+            });
+
+        }
+
+        function updateAddress()
+        {
+            var formData = $("#formeditAddress").serialize();
+
+            // alert (form);
+
+            $.ajax({
+                url: base_url + 'main/editAddress',
+                type: 'POST',
+                data: formData,
+                dataType:"json",
+                success: function(data) {
+                    if (data.status == true) {
+                        alert ('Successfully update !');
+                        location.reload();
+                    } else {
+                        alert ("error on add");
+                    }
+                },
+                error: function() {
+                    alert ('error');
+                }
+            });
+   
+        }
+
     </script>
+
+
 </body>
 
 </html>

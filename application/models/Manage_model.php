@@ -21,4 +21,32 @@ class Manage_model extends CI_Model {
             return false;
         }
     }
+
+    function get_all_order($data=false)
+    {
+        $this->db->select('*');
+        $this->db->where('status !=', 'CART');
+        $this->db->order_by('order_date', 'desc');
+        $query = $this->db->get('product_order');
+
+        if ($query->num_rows() > 0) {
+            return $query->result_array();
+        } else {
+            return false;
+        }
+    }
+
+    function get_order_log($id)
+    {
+        $this->db->select('*');
+        $this->db->where('item_id', $id);
+        $this->db->order_by('create_dt', 'desc');
+        $query = $this->db->get('log');
+
+        if ($query->num_rows() > 0) {
+            return $query->result_array();
+        } else {
+            return false;
+        }
+    }
 }
