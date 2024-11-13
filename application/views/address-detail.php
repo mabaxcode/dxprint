@@ -77,7 +77,7 @@
                                 <li><a href="<?= base_url('main/my_account')?>" class="my-account-nav-item ">Dashboard</a></li>
                                 <li><a href="<?= base_url('main/orderList')?>" class="my-account-nav-item">Orders</a></li>
                                 <li><span class="my-account-nav-item active">Address</span></li>
-                                <li><a href="<?= base_url('main/addressDetails')?>" class="my-account-nav-item">Account Details</a></li>
+                                <li><a href="<?= base_url('main/accDetails')?>" class="my-account-nav-item">Account Details</a></li>
                                 <!-- <li><a href="my-account-wishlist.html" class="my-account-nav-item">Wishlist</a></li> -->
                                 <li><a href="login.html" class="my-account-nav-item">Logout</a></li>
                             </ul>

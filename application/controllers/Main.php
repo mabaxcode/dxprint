@@ -46,7 +46,7 @@ class Main extends CI_Controller {
 		$product_img = get_any_table_array(array('product_id' => $product_id, 'is_submit' => '1'), 'product_image');
 
 		$data['product_img'] = $product_img;
-		$data['user_id']     = $this->user_id;
+		// $data['user_id']     = $this->user_id;
 
 
 		$data['colorarr'] = explode("|", $product['color']);
@@ -336,19 +336,61 @@ class Main extends CI_Controller {
             $where  = array('id' => $key['id']);
             update_any_table($update, $where, 'product_order');
 
+            # generate tracking 
+            $this->generate_tracking($key['id']);
+
+            # update stock
+            $quantity = $key['quantity'];
+            $current_stock = $product['stock'];
+
+            $balance = $current_stock - $quantity;
+
+            $updateStock = array('stock' => $balance);
+            $whreStock = array('product_id' => $key['product_id']);
+            update_any_table($updateStock, $whreStock, 'product');
+
             # insert log
             $logdata = array('item_id' => $key['id'], 'user_id' => $this->user_id, 'create_dt' => current_dt(), 'log_comment' => 'Order Placed');
             insert_any_table($logdata, 'log');
+
+            $updateTrack = array('status' => '1', 'complete_dt' => current_dt());
+            $whreTrack = array('checklist' => 'Receiving orders', 'item_id' => $key['id']);
+            update_any_table($updateTrack, $whreTrack, 'track_order');
+
 		}
 
 		$response = array('status' => true);
 		echo encode($response);
 	}
 
+	function generate_tracking($id)
+	{
+		$check = get_any_table_row(array('item_id' => $id), 'track_order');
+
+		if ($check == true) {
+		} else {
+			$checklist = get_any_table_array(array('module' => 'tracking'), 'ref_code');
+
+			foreach ($checklist as $key) {
+				$insert = array(
+					'item_id' => $id,
+					'checklist' => $key['code_desc'],
+				);
+
+				insert_any_table($insert, 'track_order');
+			}
+
+			
+		}
+	}
+
 	function orderList($data=false)
 	{
 
 		$data['order'] = get_any_table_array(array('user_id' => $this->user_id, 'payment !=' => '0', 'status !=' => 'CART'), 'product_order');
+
+		$data['user_id'] = $this->user_id;
+		$data['user_type'] = $this->user_type;
 
 		$this->load->view('order_list', $data);
 	}
@@ -367,7 +409,79 @@ class Main extends CI_Controller {
 		$data['log'] = $this->DbManage->get_order_log($id);
 		// get_any_table_array(array('item_id' => $id), 'log');
 
+		$data['user_id'] = $this->user_id;
+		$data['user_type'] = $this->user_type;
+
 		$this->load->view('order_detail', $data);
+	}
+
+	public function orderReceived($data=false)
+	{
+		// code...
+		$id     = $this->input->post('id');
+		$update = array('status' => 'COMPLETE');
+        $where  = array('id' => $id);
+        update_any_table($update, $where, 'product_order');
+
+        // insert log
+        $logdata = array('item_id' => $id, 'create_dt' => current_dt(), 'log_comment' => 'Product Has Been Delivered');
+        insert_any_table($logdata, 'log');
+
+        $response = array('status' => true);
+		echo encode($response);
+
+	}
+
+	function accDetails($data=false)
+	{
+		$data['user_id'] = $this->user_id;
+		$data['user_type'] = $this->user_type;
+
+		$data['user'] = get_any_table_row(array('id' => $this->user_id), 'users');
+
+		$this->load->view('acc_details', $data);
+	}
+
+	function updateAcc($data=false)
+	{
+		$post = $this->input->post();
+		// print_r($post); exit;
+
+		if ($post['password'] == '') {
+			$update = array('name' => $post['name'], 'email' => $post['email'], 'phone_no' => $post['phone_no']);
+		} else {
+			$update = array('name' => $post['name'], 'email' => $post['email'], 'phone_no' => $post['phone_no'], 'password' => md5($post['password']));	
+		}
+
+		$where = array('id' => $this->user_id);
+
+		update_any_table($update, $where, 'users');
+		$response = array('status' => true);
+		echo encode($response);
+	}
+
+	function shopNow($data=false)
+	{	
+
+		$data['product'] = $this->DbManage->get_all_product();
+
+		$this->load->view('shop_now', $data);
+	}
+
+	function contactUs($data=false)
+	{	
+
+		$data['list_tshirt_panjang'] = get_any_table_array(array('category' => '1'), 'product');
+		$data['list_tshirt_pendek'] = get_any_table_array(array('category' => '2'), 'product');
+		$data['list_jersey'] = get_any_table_array(array('category' => '3'), 'product');
+		$data['list_kaftan_sepasang'] = get_any_table_array(array('category' => '4'), 'product');
+
+		$data['user_id'] = $this->user_id;
+		$data['user_type'] = $this->user_type;
+
+		$data['total_in_cart'] = count_any_table(array('user_id' => $this->user_id, 'status' => 'CART'), 'product_order');
+		
+		$this->load->view('contact_us', $data);	
 	}
 
 }

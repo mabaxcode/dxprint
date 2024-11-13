@@ -15,7 +15,7 @@
                                                             <!-- <li><a href="product-detail.html" class="menu-link-text link">Koleksi Kain Sarung</a></li> -->
                                                             <? if($list_tshirt_panjang){ ?>
                                                                 <? foreach ($list_tshirt_panjang as $tshirt_panjang) { ?>
-                                                                <li><a href="<?= base_url('main/productDetail/'.$tshirt_panjang['product_id'])?>" class="menu-link-text link"><?= $tshirt_panjang['name']?></a></li>
+                                                                <li><a href="<?= base_url('main/productDetail/'.$tshirt_panjang['product_id'])?>" class="menu-link-text link" <? if($tshirt_panjang['stock'] == '0'){echo 'onclick="return false;"';} ?>><?= $tshirt_panjang['name']?>&nbsp; <? if($tshirt_panjang['stock'] == '0'){echo '<font color="red">(Out of stock)</font>';} ?></a></li>
                                                                 <? } ?>
                                                             <? } else {
                                                                     echo "<font color='red'>Product is empty</font>";
@@ -29,7 +29,7 @@
                                                         <ul class="menu-list">
                                                             <? if($list_tshirt_pendek){ ?>
                                                                 <? foreach ($list_tshirt_pendek as $tshirt_pendek) { ?>
-                                                                <li><a href="<?= base_url('main/productDetail/'.$tshirt_pendek['product_id'])?>" class="menu-link-text link"><?= $tshirt_pendek['name']?></a></li>
+                                                                <li><a href="<?= base_url('main/productDetail/'.$tshirt_pendek['product_id'])?>" class="menu-link-text link" <? if($tshirt_pendek['stock'] == '0'){echo 'onclick="return false;"';} ?>><?= $tshirt_pendek['name']?>&nbsp; <? if($tshirt_pendek['stock'] == '0'){echo '<font color="red">(Out of stock)</font>';} ?></a></li>
                                                                 <? } ?>
                                                             <? } else {
                                                                     echo "<font color='red'>Product is empty</font>";
@@ -43,7 +43,7 @@
                                                         <ul class="menu-list">
                                                             <? if($list_jersey){ ?>
                                                                 <? foreach ($list_jersey as $jersey) { ?>
-                                                                <li><a href="<?= base_url('main/productDetail/'.$jersey['product_id'])?>" class="menu-link-text link"><?= $jersey['name']?></a></li>
+                                                                <li><a href="<?= base_url('main/productDetail/'.$jersey['product_id'])?>" class="menu-link-text link" <? if($jersey['stock'] == '0'){echo 'onclick="return false;"';} ?>><?= $jersey['name']?> &nbsp; <? if($jersey['stock'] == '0'){echo '<font color="red">(Out of stock)</font>';} ?></a></li>
                                                                 <? } ?>
                                                             <? } else {
                                                                     echo "<font color='red'>Product is empty</font>";
@@ -57,7 +57,7 @@
                                                         <ul class="menu-list">
                                                             <? if($list_uniform){ ?>
                                                                 <? foreach ($list_uniform as $uniform) { ?>
-                                                                <li><a href="<?= base_url('main/productDetail/'.$uniform['product_id'])?>" class="menu-link-text link"><?= $uniform['name']?></a></li>
+                                                                <li><a href="<?= base_url('main/productDetail/'.$uniform['product_id'])?>" class="menu-link-text link" <? if($uniform['stock'] == '0'){echo 'onclick="return false;"';} ?>><?= $uniform['name']?>&nbsp; <? if($uniform['stock'] == '0'){echo '<font color="red">(Out of stock)</font>';} ?></a></li>
                                                                 <? } ?>
                                                             <? } else {
                                                                     echo "<font color='red'>Product is empty</font>";
@@ -69,6 +69,6 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li class="menu-item"><a href="https://themeforest.net/item/ecomus-ultimate-html5-template/53417990?s_rank=3" class="item-link">Contact Us</a></li>
+                                <li class="menu-item"><a href="<?=base_url('main/contactUs')?>" class="item-link">Contact Us</a></li>
                             </ul>
                         </nav>

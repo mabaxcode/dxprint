@@ -1,26 +1,42 @@
 
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
 
-<? $this->load->view('template/header'); ?>
+<head>
+    <meta charset="utf-8">
+    <title>DXPRINT</title>
 
-<body class="preload-wrapper popup-loader">
+    <meta name="author" content="themesflat.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <!-- preload -->
-    <div class="preload preload-container">
-        <div class="preload-logo">
-            <div class="spinner"></div>
-        </div>
-    </div>
-    <!-- /preload -->
+   <!-- font -->
+   <link rel="stylesheet" href="<?= base_url()?>assets/fonts/fonts.css">
+   <!-- Icons -->
+   <link rel="stylesheet" href="<?= base_url()?>assets/fonts/font-icons.css">
+   <link rel="stylesheet" href="<?= base_url()?>assets/css/bootstrap.min.css">
+   <link rel="stylesheet" href="<?= base_url()?>assets/css/swiper-bundle.min.css">
+   <link rel="stylesheet" href="<?= base_url()?>assets/css/animate.css">
+   <link rel="stylesheet" type="text/css" href="<?= base_url()?>assets/css/styles.css"/>
+
+    <!-- Favicon and Touch Icons  -->
+    <link rel="shortcut icon" href="<?= base_url()?>assets/images/logo/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="<?= base_url()?>assets/images/logo/favicon.png">
+
+</head>
+
+<body class="preload-wrapper">
+    <!-- RTL -->
+    <!-- <a href="javascript:void(0);" id="toggle-rtl" class="tf-btn animate-hover-btn btn-fill">RTL</a> -->
+    <!-- /RTL  --> 
     <div id="wrapper">
-        <!-- Header -->
-        <header id="header" class="header-default header-uppercase">
-            <div class="container-full px_15 lg-px_40">
+        <!-- header -->
+        <header id="header" class="header-default">
+            <div class="px_15 lg-px_40">
                 <div class="row wrapper-header align-items-center">
                     <div class="col-md-4 col-3 tf-lg-hidden">
-                        <a href="#mobileMenu" data-bs-toggle="offcanvas" aria-controls="offcanvasLeft" class="btn-mobile">
+                        <a href="#mobileMenu" data-bs-toggle="offcanvas" aria-controls="offcanvasLeft">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="16" viewBox="0 0 24 16" fill="none">
                                 <path d="M2.00056 2.28571H16.8577C17.1608 2.28571 17.4515 2.16531 17.6658 1.95098C17.8802 1.73665 18.0006 1.44596 18.0006 1.14286C18.0006 0.839753 17.8802 0.549063 17.6658 0.334735C17.4515 0.120408 17.1608 0 16.8577 0H2.00056C1.69745 0 1.40676 0.120408 1.19244 0.334735C0.978109 0.549063 0.857702 0.839753 0.857702 1.14286C0.857702 1.44596 0.978109 1.73665 1.19244 1.95098C1.40676 2.16531 1.69745 2.28571 2.00056 2.28571ZM0.857702 8C0.857702 7.6969 0.978109 7.40621 1.19244 7.19188C1.40676 6.97755 1.69745 6.85714 2.00056 6.85714H22.572C22.8751 6.85714 23.1658 6.97755 23.3801 7.19188C23.5944 7.40621 23.7148 7.6969 23.7148 8C23.7148 8.30311 23.5944 8.59379 23.3801 8.80812C23.1658 9.02245 22.8751 9.14286 22.572 9.14286H2.00056C1.69745 9.14286 1.40676 9.02245 1.19244 8.80812C0.978109 8.59379 0.857702 8.30311 0.857702 8ZM0.857702 14.8571C0.857702 14.554 0.978109 14.2633 1.19244 14.049C1.40676 13.8347 1.69745 13.7143 2.00056 13.7143H12.2863C12.5894 13.7143 12.8801 13.8347 13.0944 14.049C13.3087 14.2633 13.4291 14.554 13.4291 14.8571C13.4291 15.1602 13.3087 15.4509 13.0944 15.6653C12.8801 15.8796 12.5894 16 12.2863 16H2.00056C1.69745 16 1.40676 15.8796 1.19244 15.6653C0.978109 15.4509 0.857702 15.1602 0.857702 14.8571Z" fill="currentColor"></path>
                             </svg>
@@ -28,7 +44,7 @@
                     </div>
                     <div class="col-xl-3 col-md-4 col-6">
                         <a href="<?=base_url();?>" class="logo-header">
-                            <!-- <img src="images/logo/logo@2x.png" alt="logo" class="logo dark-logo"> -->
+                            <!-- <img src="images/logo/logo.svg" alt="logo" class="logo"> -->
                             <h5><b>DXPRINT</b></h5>
                         </a>
                     </div>
@@ -42,532 +58,67 @@
             </div>
         </header>
         <!-- /header -->
-        <!-- slider -->
-        <div class="tf-slideshow slider-effect-fade position-relative slideshow-tee">
-            <div dir="ltr" class="swiper tf-sw-slideshow" data-preview="1" data-tablet="1" data-mobile="1" data-centered="false" data-space="0" data-loop="true" data-auto-play="true" data-delay="2000" data-speed="1000">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide" lazy="true">
-                        <div class="wrap-slider">
-                            <img class="lazyload" data-src="<?=base_url()?>assets/images/slider/1_E9m2iVwyTP9xG9CPw_KxIA.png" src="<?=base_url()?>assets/images/slider/slideshow1_tee.jpg" alt="slideshow" loading="lazy">
-                            <div class="box-content text-center">
-                                <div class="container">
-                                    <h1 class="fade-item fade-item-1 text-stroke-white heading font-caprasimo">DXPRINT</h1>
-                                    <p class="fade-item fade-item-2 text_white d-block font-caprasimo">collections</p>
-                                    <div class="fade-item fade-item-3">
-                                        <a href="<?=base_url('main/shopNow')?>" class="tf-btn btn-light-icon font-caprasimo fw-4 animate-hover-btn letter-2"><span>SHOP NOW</span></a> 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <?/*
-                    <div class="swiper-slide" lazy="true">
-                        <div class="wrap-slider">
-                            <img class="lazyload" data-src="<?= base_url()?>assets/images/slider/slideshow2_tee.jpg" src="<?= base_url()?>assets/images/slider/slideshow2_tee.jpg" alt="slideshow" loading="lazy">
-                            <div class="box-content text-center">
-                                <div class="container">
-                                    <h1 class="fade-item fade-item-1 text-stroke-white heading font-caprasimo">Out Of Office</h1>
-                                    <p class="fade-item fade-item-2 text_white d-block font-caprasimo">collections</p>
-                                    <div class="fade-item fade-item-3">
-                                        <a href="shop-collection-sub.html" class="tf-btn btn-light-icon font-caprasimo fw-4 animate-hover-btn letter-2"><span>SHOP NOW</span></a> 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide" lazy="true">
-                        <div class="wrap-slider">
-                            <img class="lazyload" data-src="<?= base_url()?>assets/images/slider/slideshow3_tee.jpg" src="<?= base_url()?>assets/images/slider/slideshow3_tee.jpg" alt="slideshow" loading="lazy">
-                            <div class="box-content text-center">
-                                <div class="container">
-                                    <h1 class="fade-item fade-item-1 text-stroke-white heading font-caprasimo">SALE</h1>
-                                    <p class="fade-item fade-item-2 text_white d-block font-caprasimo">End Of Season Sale</p>
-                                    <div class="fade-item fade-item-3">
-                                        <a href="shop-collection-sub.html" class="tf-btn btn-light-icon font-caprasimo fw-4 animate-hover-btn letter-2"><span>SHOP NOW</span></a> 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    */?>
-                </div>
-            </div>
-            <div class="wrap-pagination">
-                <div class="container">
-                    <div class="sw-dots dots-fill-white sw-pagination-slider justify-content-center"></div>
-                </div>
-            </div>
-        </div>
-        <!-- /slider -->
-        <!-- Marquee -->
-        <?/*
-        <div class="tf-marquee bg_yellow-2">
-            <div class="wrap-marquee">
-                <div class="marquee-item">
-                    <div class="icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="" width="15" height="20" viewBox="0 0 15 20"><path d="M14.5833 8H8.61742L9.94318 0L0 12H5.96591L4.64015 20L14.5833 8"></path></svg>
-                    </div>
-                    <p class="text">Spring Clearance Event: Save Up to 70%</p>
-                </div>
-                <div class="marquee-item">
-                    <div class="icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="" width="15" height="20" viewBox="0 0 15 20"><path d="M14.5833 8H8.61742L9.94318 0L0 12H5.96591L4.64015 20L14.5833 8"></path></svg>
-                    </div>
-                    <p class="text">Spring Clearance Event: Save Up to 70%</p>
-                </div>
-                <div class="marquee-item">
-                    <div class="icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="" width="15" height="20" viewBox="0 0 15 20"><path d="M14.5833 8H8.61742L9.94318 0L0 12H5.96591L4.64015 20L14.5833 8"></path></svg>
-                    </div>
-                    <p class="text">Spring Clearance Event: Save Up to 70%</p>
-                </div>
-                <div class="marquee-item">
-                    <div class="icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="" width="15" height="20" viewBox="0 0 15 20"><path d="M14.5833 8H8.61742L9.94318 0L0 12H5.96591L4.64015 20L14.5833 8"></path></svg>
-                    </div>
-                    <p class="text">Spring Clearance Event: Save Up to 70%</p>
-                </div>
-                <div class="marquee-item">
-                    <div class="icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="" width="15" height="20" viewBox="0 0 15 20"><path d="M14.5833 8H8.61742L9.94318 0L0 12H5.96591L4.64015 20L14.5833 8"></path></svg>
-                    </div>
-                    <p class="text">Spring Clearance Event: Save Up to 70%</p>
-                </div>
-                <div class="marquee-item">
-                    <div class="icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="" width="15" height="20" viewBox="0 0 15 20"><path d="M14.5833 8H8.61742L9.94318 0L0 12H5.96591L4.64015 20L14.5833 8"></path></svg>
-                    </div>
-                    <p class="text">Spring Clearance Event: Save Up to 70%</p>
-                </div>
-                <div class="marquee-item">
-                    <div class="icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="" width="15" height="20" viewBox="0 0 15 20"><path d="M14.5833 8H8.61742L9.94318 0L0 12H5.96591L4.64015 20L14.5833 8"></path></svg>
-                    </div>
-                    <p class="text">Spring Clearance Event: Save Up to 70%</p>
-                </div>
-                <div class="marquee-item">
-                    <div class="icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="" width="15" height="20" viewBox="0 0 15 20"><path d="M14.5833 8H8.61742L9.94318 0L0 12H5.96591L4.64015 20L14.5833 8"></path></svg>
-                    </div>
-                    <p class="text">Spring Clearance Event: Save Up to 70%</p>
-                </div>
-                <div class="marquee-item">
-                    <div class="icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="" width="15" height="20" viewBox="0 0 15 20"><path d="M14.5833 8H8.61742L9.94318 0L0 12H5.96591L4.64015 20L14.5833 8"></path></svg>
-                    </div>
-                    <p class="text">Spring Clearance Event: Save Up to 70%</p>
-                </div>
-                <div class="marquee-item">
-                    <div class="icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="" width="15" height="20" viewBox="0 0 15 20"><path d="M14.5833 8H8.61742L9.94318 0L0 12H5.96591L4.64015 20L14.5833 8"></path></svg>
-                    </div>
-                    <p class="text">Spring Clearance Event: Save Up to 70%</p>
-                </div>
-            </div>
-                      
-        </div>
-        */?>
-        <!-- /Marquee -->
-        <!-- Categories -->
-        <section class="flat-spacing-4 flat-categorie">
-            <div class="container-full">
-               <div class="flat-title-v2">
-                    <div class="box-sw-navigation">
-                        <div class="nav-sw nav-next-slider nav-next-collection"><span class="icon icon-arrow-left"></span></div>
-                        <div class="nav-sw nav-prev-slider nav-prev-collection"><span class="icon icon-arrow-right"></span></div>
-                    </div>
-                    <span class="text-3 fw-7 text-uppercase title wow fadeInUp" data-wow-delay="0s">SHOP BY CATEGORIES</span>
-               </div>
-               <div class="row">
-                    <div class="col-xl-12 col-lg-12 col-md-12">
-                        <div dir="ltr" class="swiper tf-sw-collection" data-preview="3" data-tablet="2" data-mobile="2" data-space-lg="30" data-space-md="30" data-space="15" data-loop="false" data-auto-play="false">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide" lazy="true">
-                                    <div class="collection-item style-left hover-img">
-                                        <div class="collection-inner">
-                                            <a href="<?=base_url('main/shopNow')?>l" class="collection-image img-style">
-                                                <img class="lazyload" data-src="<?= base_url();?>assets/images/homepage/bg-lpanjang.jpeg" src="<?= base_url();?>assets/images/homepage/bg-lpanjang.jpeg" alt="collection-img">
-                                            </a>
-                                            <div class="collection-content">
-                                                <a href="<?=base_url('main/shopNow')?>" class="tf-btn collection-title hover-icon fs-15"><span>T - Shirt Lengan Panjang</span><i class="icon icon-arrow1-top-left"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide" lazy="true">
-                                    <div class="collection-item style-left hover-img">
-                                        <div class="collection-inner">
-                                            <a href="<?=base_url('main/shopNow')?>" class="collection-image img-style">
-                                                <img class="lazyload" data-src="<?= base_url();?>assets/images/homepage/bg-lpendek.jpg" src="<?= base_url();?>assets/images/homepage/bg-lpendek.jpg" alt="collection-img">
-                                            </a>
-                                            <div class="collection-content">
-                                                <a href="<?=base_url('main/shopNow')?>" class="tf-btn collection-title hover-icon fs-15"><span>T - Shirt Lengan Pendek</span><i class="icon icon-arrow1-top-left"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide" lazy="true">
-                                    <div class="collection-item style-left hover-img">
-                                        <div class="collection-inner">
-                                            <a href="<?=base_url('main/shopNow')?>" class="collection-image img-style">
-                                                <img class="lazyload" data-src="<?= base_url();?>assets/images/homepage/jersey.jpg" src="<?= base_url();?>assets/images/homepage/jersey.jpg" alt="collection-demo-1">
-                                            </a>
-                                            <div class="collection-content">
-                                                <a href="<?=base_url('main/shopNow')?>" class="tf-btn collection-title hover-icon fs-15"><span>Jersey</span><i class="icon icon-arrow1-top-left"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide" lazy="true">
-                                    <div class="collection-item style-left hover-img">
-                                        <div class="collection-inner">
-                                            <a href="<?=base_url('main/shopNow')?>" class="collection-image img-style">
-                                                <img class="lazyload" data-src="<?= base_url();?>assets/images/homepage/jersey.jpg" src="<?= base_url();?>assets/images/homepage/jersey.jpg" alt="collection-demo-1">
-                                            </a>
-                                            <div class="collection-content">
-                                                <a href="<?=base_url('main/shopNow')?>" class="tf-btn collection-title hover-icon fs-15"><span>Uniform</span><i class="icon icon-arrow1-top-left"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <?/*
-                    <div class="col-xl-3 col-lg-4 col-md-4">
-                        <div class="discovery-new-item">
-                            <h5>Discovery all new items</h5>
-                            <a href="shop-collection-list.html"><i class="icon-arrow1-top-left"></i></a>
-                        </div>
-                    </div>
-                    */?>
-               </div>
-               
-            </div>
-        </section>
-        <!-- /Categories -->
-        <!-- Seller -->
-        <?/*
-        <section class="flat-spacing-5 pt_0 flat-seller">
-            <div class="container">
-                <div class="flat-title">
-                    <span class="title wow fadeInUp" data-wow-delay="0s">Best Seller</span>
-                    <p class="sub-title wow fadeInUp" data-wow-delay="0s">Shop the Latest Styles: Stay ahead of the curve with our newest arrivals</p>
-                </div>
-                <div class="grid-layout loadmore-item wow fadeInUp" data-wow-delay="0s" data-grid="grid-4">
-                    <!-- card product 1 -->
-                    <div class="card-product fl-item">
-                        <div class="card-product-wrapper">
-                            <a href="product-detail.html" class="product-img">
-                                <img class="lazyload img-product" data-src="<?= base_url(); ?>assets/images/products/orange-1.jpg" src="images/products/orange-1.jpg" alt="image-product">
-                                <img class="lazyload img-hover" data-src="<?= base_url(); ?>assets/images/products/white-1.jpg" src="images/products/white-1.jpg" alt="image-product">
-                            </a>
-                            <div class="list-product-btn">
-                                <a href="#quick_add" data-bs-toggle="modal" class="box-icon bg_white quick-add tf-btn-loading">
-                                    <span class="icon icon-bag"></span>
-                                    <span class="tooltip">Quick Add</span>
-                                </a>
-                                <a href="javascript:void(0);" class="box-icon bg_white wishlist btn-icon-action">
-                                    <span class="icon icon-heart"></span>
-                                    <span class="tooltip">Add to Wishlist</span>
-                                    <span class="icon icon-delete"></span>
-                                </a>
-                                <a href="#compare" data-bs-toggle="offcanvas" aria-controls="offcanvasLeft" class="box-icon bg_white compare btn-icon-action">
-                                    <span class="icon icon-compare"></span>
-                                    <span class="tooltip">Add to Compare</span>
-                                    <span class="icon icon-check"></span>
-                                </a>
-                                <a href="#quick_view" data-bs-toggle="modal" class="box-icon bg_white quickview tf-btn-loading">
-                                    <span class="icon icon-view"></span>
-                                    <span class="tooltip">Quick View</span>
-                                </a>
-                            </div>
-                            <div class="size-list">
-                                <span>S</span>
-                                <span>M</span>
-                                <span>L</span>
-                                <span>XL</span>
-                            </div>
-                        </div>
-                        <div class="card-product-info">
-                            <a href="product-detail.html" class="title link">Ribbed Tank Top</a>
-                            <span class="price">$16.95</span>
-                            <ul class="list-color-product">
-                                <li class="list-color-item color-swatch active">
-                                    <span class="tooltip">Orange</span>
-                                    <span class="swatch-value bg_orange-3"></span>
-                                    <img class="lazyload" data-src="<?= base_url(); ?>assets/images/products/orange-1.jpg" src="images/products/orange-1.jpg" alt="image-product">
-                                </li>
-                                <li class="list-color-item color-swatch">
-                                    <span class="tooltip">Black</span>
-                                    <span class="swatch-value bg_dark"></span>
-                                    <img class="lazyload" data-src="<?= base_url(); ?>assets/images/products/black-1.jpg" src="images/products/black-1.jpg" alt="image-product">
-                                </li>
-                                <li class="list-color-item color-swatch">
-                                    <span class="tooltip">White</span>
-                                    <span class="swatch-value bg_white"></span>
-                                    <img class="lazyload" data-src="<?= base_url(); ?>assets/images/products/white-1.jpg" src="images/products/white-1.jpg" alt="image-product">
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- card product 2 -->
-                    <div class="card-product fl-item">
-                        <div class="card-product-wrapper">
-                            <a href="product-detail.html" class="product-img">
-                                <img class="lazyload img-product" data-src="<?= base_url(); ?>assets/images/products/brown.jpg" src="images/products/brown.jpg" alt="image-product">
-                                <img class="lazyload img-hover" data-src="<?= base_url(); ?>assets/images/products/purple.jpg" src="images/products/purple.jpg" alt="image-product">
-                            </a>
-                            <div class="list-product-btn">
-                                <a href="#quick_add" data-bs-toggle="modal" class="box-icon bg_white quick-add tf-btn-loading">
-                                    <span class="icon icon-bag"></span>
-                                    <span class="tooltip">Quick Add</span>
-                                </a>
-                                <a href="javascript:void(0);" class="box-icon bg_white wishlist btn-icon-action">
-                                    <span class="icon icon-heart"></span>
-                                    <span class="tooltip">Add to Wishlist</span>
-                                    <span class="icon icon-delete"></span>
-                                </a>
-                                <a href="#compare" data-bs-toggle="offcanvas" aria-controls="offcanvasLeft" class="box-icon bg_white compare btn-icon-action">
-                                    <span class="icon icon-compare"></span>
-                                    <span class="tooltip">Add to Compare</span>
-                                    <span class="icon icon-check"></span>
-                                </a>
-                                <a href="#quick_view" data-bs-toggle="modal" class="box-icon bg_white quickview tf-btn-loading">
-                                    <span class="icon icon-view"></span>
-                                    <span class="tooltip">Quick View</span>
-                                </a>
-                            </div>
-                            <div class="size-list">
-                                <span>M</span>
-                                <span>L</span>
-                                <span>XL</span>
-                            </div>
-                            <div class="countdown-box">
-                                <div class="js-countdown" data-timer="1007500" data-labels="d :,h :,m :,s"></div>
-                            </div>
-                        </div>
-                        <div class="card-product-info">
-                            <a href="product-detail.html" class="title link">Ribbed modal T-shirt</a>
-                            <span class="price">From $18.95</span>
-                            <ul class="list-color-product">
-                                <li class="list-color-item color-swatch active">
-                                    <span class="tooltip">Brown</span>
-                                    <span class="swatch-value bg_brown"></span>
-                                    <img class="lazyload" data-src="<?= base_url(); ?>assets/images/products/brown.jpg" src="images/products/brown.jpg" alt="image-product">
-                                </li>
-                                <li class="list-color-item color-swatch">
-                                    <span class="tooltip">Light Purple</span>
-                                    <span class="swatch-value bg_purple"></span>
-                                    <img class="lazyload" data-src="<?= base_url(); ?>assets/images/products/purple.jpg" src="images/products/purple.jpg" alt="image-product">
-                                </li>
-                                <li class="list-color-item color-swatch">
-                                    <span class="tooltip">Light Green</span>
-                                    <span class="swatch-value bg_light-green"></span>
-                                    <img class="lazyload" data-src="<?= base_url(); ?>assets/images/products/green.jpg" src="images/products/green.jpg" alt="image-product">
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- card product 3 -->
-                    <div class="card-product fl-item">
-                        <div class="card-product-wrapper">
-                            <a href="product-detail.html" class="product-img">
-                                <img class="lazyload img-product" data-src="<?= base_url(); ?>assets/images/products/white-3.jpg" src="images/products/white-3.jpg" alt="image-product">
-                                <img class="lazyload img-hover" data-src="<?= base_url(); ?>assets/images/products/white-4.jpg" src="images/products/white-4.jpg" alt="image-product">
-                            </a>
-                            <div class="list-product-btn absolute-2">
-                                <a href="#shoppingCart" data-bs-toggle="modal" class="box-icon bg_white quick-add tf-btn-loading">
-                                    <span class="icon icon-bag"></span>
-                                    <span class="tooltip">Add to cart</span>
-                                </a>
-                                <a href="javascript:void(0);" class="box-icon bg_white wishlist btn-icon-action">
-                                    <span class="icon icon-heart"></span>
-                                    <span class="tooltip">Add to Wishlist</span>
-                                    <span class="icon icon-delete"></span>
-                                </a>
-                                <a href="#compare" data-bs-toggle="offcanvas" aria-controls="offcanvasLeft" class="box-icon bg_white compare btn-icon-action">
-                                    <span class="icon icon-compare"></span>
-                                    <span class="tooltip">Add to Compare</span>
-                                    <span class="icon icon-check"></span>
-                                </a>
-                                <a href="#quick_view" data-bs-toggle="modal" class="box-icon bg_white quickview tf-btn-loading">
-                                    <span class="icon icon-view"></span>
-                                    <span class="tooltip">Quick View</span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="card-product-info">
-                            <a href="product-detail.html" class="title link">Oversized Printed T-shirt</a>
-                            <span class="price">$10.00</span>
-                        </div>
-                    </div>
-                    <!-- card product 4 -->
-                    <div class="card-product fl-item">
-                        <div class="card-product-wrapper">
-                            <a href="product-detail.html" class="product-img">
-                                <img class="lazyload img-product" data-src="<?= base_url(); ?>assets/images/products/white-2.jpg" src="images/products/white-2.jpg" alt="image-product">
-                                <img class="lazyload img-hover" data-src="<?= base_url(); ?>assets/images/products/pink-1.jpg" src="images/products/pink-1.jpg" alt="image-product">
-                            </a>
-                            <div class="list-product-btn">
-                                <a href="#quick_add" data-bs-toggle="modal" class="box-icon bg_white quick-add tf-btn-loading">
-                                    <span class="icon icon-bag"></span>
-                                    <span class="tooltip">Quick Add</span>
-                                </a>
-                                <a href="javascript:void(0);" class="box-icon bg_white wishlist btn-icon-action">
-                                    <span class="icon icon-heart"></span>
-                                    <span class="tooltip">Add to Wishlist</span>
-                                    <span class="icon icon-delete"></span>
-                                </a>
-                                <a href="#compare" data-bs-toggle="offcanvas" aria-controls="offcanvasLeft" class="box-icon bg_white compare btn-icon-action">
-                                    <span class="icon icon-compare"></span>
-                                    <span class="tooltip">Add to Compare</span>
-                                    <span class="icon icon-check"></span>
-                                </a>
-                                <a href="#quick_view" data-bs-toggle="modal" class="box-icon bg_white quickview tf-btn-loading">
-                                    <span class="icon icon-view"></span>
-                                    <span class="tooltip">Quick View</span>
-                                </a>
-                            </div>
-                            <div class="size-list">
-                                <span>S</span>
-                                <span>M</span>
-                                <span>L</span>
-                                <span>XL</span>
-                            </div>
-                        </div>
-                        <div class="card-product-info">
-                            <a href="product-detail.html" class="title">Oversized Printed T-shirt</a>
-                            <span class="price">$16.95</span>
-                            <ul class="list-color-product">
-                                <li class="list-color-item color-swatch active">
-                                    <span class="tooltip">White</span>
-                                    <span class="swatch-value bg_white"></span>
-                                    <img class="lazyload" data-src="images/products/white-2.jpg" src="images/products/white-2.jpg" alt="image-product">
-                                </li>
-                                <li class="list-color-item color-swatch">
-                                    <span class="tooltip">Pink</span>
-                                    <span class="swatch-value bg_purple"></span>
-                                    <img class="lazyload" data-src="images/products/pink-1.jpg" src="images/products/pink-1.jpg" alt="image-product">
-                                </li>
-                                <li class="list-color-item color-swatch">
-                                    <span class="tooltip">Black</span>
-                                    <span class="swatch-value bg_dark"></span>
-                                    <img class="lazyload" data-src="images/products/black-2.jpg" src="images/products/black-2.jpg" alt="image-product">
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="tf-pagination-wrap view-more-button text-center">
-                    <button class="tf-btn-loading tf-loading-default style-2 btn-loadmore "><span class="text">Load more</span></button>
-                </div>
-            </div>
-        </section>
-        */?>
-        <!-- /Seller -->
-        <!-- Testimonial -->
-        <section class="flat-spacing-5 pt_0 flat-testimonial">
-            <div class="container">
-                <div class="flat-title wow fadeInUp" data-wow-delay="0s">
-                    <span class="title">Happy Clients</span>
-                    <p class="sub-title">Hear what they say about us</p>
-                </div>
-                <div class="wrap-carousel">
-                    <div dir="ltr" class="swiper tf-sw-testimonial" data-preview="3" data-tablet="2" data-mobile="1" data-space-lg="30" data-space-md="15">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="testimonial-item style-column wow fadeInUp" data-wow-delay="0s">
-                                    <div class="rating">
-                                        <i class="icon-star"></i>
-                                        <i class="icon-star"></i>
-                                        <i class="icon-star"></i>
-                                        <i class="icon-star"></i>
-                                        <i class="icon-star"></i>
-                                    </div>
-                                    <div class="heading">Best Online Fashion Site</div>
-                                    <div class="text">
-                                        “ I always find something stylish and affordable on this web fashion site ”
-                                    </div>
-                                    <div class="author">
-                                        <div class="name">Robert smith</div>
-                                        <div class="metas">Customer from USA</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="testimonial-item style-column wow fadeInUp" data-wow-delay=".1s">
-                                    <div class="rating">
-                                        <i class="icon-star"></i>
-                                        <i class="icon-star"></i>
-                                        <i class="icon-star"></i>
-                                        <i class="icon-star"></i>
-                                        <i class="icon-star"></i>
-                                    </div>
-                                    <div class="heading">Great Selection and Quality</div>
-                                    <div class="text">
-                                        "I love the variety of styles and the high-quality clothing on this web fashion site."
-                                    </div>
-                                    <div class="author">
-                                        <div class="name">Allen Lyn</div>
-                                        <div class="metas">Customer from France</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="testimonial-item style-column wow fadeInUp" data-wow-delay=".2s">
-                                    <div class="rating">
-                                        <i class="icon-star"></i>
-                                        <i class="icon-star"></i>
-                                        <i class="icon-star"></i>
-                                        <i class="icon-star"></i>
-                                        <i class="icon-star"></i>
-                                    </div>
-                                    <div class="heading">Best Customer Service</div>
-                                    <div class="text">
-                                        "I finally found a web fashion site with stylish and flattering options in my size."
-                                    </div>
-                                    <div class="author">
-                                        <div class="name">Peter Rope</div>
-                                        <div class="metas">Customer from USA</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="testimonial-item style-column wow fadeInUp" data-wow-delay=".3s">
-                                    <div class="rating">
-                                        <i class="icon-star"></i>
-                                        <i class="icon-star"></i>
-                                        <i class="icon-star"></i>
-                                        <i class="icon-star"></i>
-                                        <i class="icon-star"></i>
-                                    </div>
-                                    <div class="heading">Great Selection and Quality</div>
-                                    <div class="text">
-                                        "I love the variety of styles and the high-quality clothing on this web fashion site."
-                                    </div>
-                                    <div class="author">
-                                        <div class="name">Hellen Ase</div>
-                                        <div class="metas">Customer from Japan</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="nav-sw nav-next-slider nav-next-testimonial lg"><span class="icon icon-arrow-left"></span></div>
-                    <div class="nav-sw nav-prev-slider nav-prev-testimonial lg"><span class="icon icon-arrow-right"></span></div>
-                    <div class="sw-dots style-2 sw-pagination-testimonial justify-content-center"></div>
-                </div>
-            </div>
-        </section>
-        <!-- /Testimonial -->
-        <!-- Footer -->
-        <? $this->load->view('footer'); ?>
-        <!-- /Footer -->
-        
-    </div>
-     
 
+        <!-- page-title -->
+        <div class="tf-page-title">
+            <div class="container-full">
+                <div class="heading text-center">Contact Us</div>
+            </div>
+        </div>
+        <!-- /page-title -->
+        
+        <!-- page-cart -->
+         <section class="flat-spacing-9">
+            <div class="container">
+                <div class="tf-grid-layout gap-0 lg-col-2">
+                    <div class="w-100">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3983.876412475855!2d101.729335474737!3d3.127360453286685!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc366b7182598b%3A0x1c5dee755eb7347!2s134%2C%20Jalan%20Jejaka%2C%20Maluri%2C%2055100%20Cheras%2C%20Wilayah%20Persekutuan%20Kuala%20Lumpur!5e0!3m2!1sen!2smy!4v1731512289249!5m2!1sen!2smy" width="100%" height="894" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <div class="tf-content-left has-mt">
+                        <div class="sticky-top">
+                            <h5 class="mb_20">Visit Our Store</h5>
+                            <div class="mb_20">
+                                <p class="mb_15"><strong>Address</strong></p>
+                                <p>134 Jalan Jejaka Taman Maluri, Cheras, Kuala Lumpur 55100</p>
+                            </div>
+                            <div class="mb_20">
+                                <p class="mb_15"><strong>Phone</strong></p>
+                                <p>+60133619877</p>
+                            </div>
+                            <div class="mb_20">
+                                <p class="mb_15"><strong>Email</strong></p>
+                                <p>info@dxprint.com</p>
+                            </div>
+                           <!--  <div class="mb_36">
+                                <p class="mb_15"><strong>Open Time</strong></p>
+                                <p class="mb_15">Our store has re-opened for shopping, </p>
+                                <p>exchange Every day 11am to 7pm</p>
+                            </div> -->
+                            <div>
+                                <ul class="tf-social-icon d-flex gap-20 style-default">
+                                    <li><a href="#" class="box-icon link round social-facebook border-line-black"><i class="icon fs-14 icon-fb"></i></a></li>
+                                    <!-- <li><a href="#" class="box-icon link round social-twiter border-line-black"><i class="icon fs-12 icon-Icon-x"></i></a></li> -->
+                                    <li><a href="https://www.instagram.com/dxprints/?igsh=MWszbGM4dXd1cnZwOA%3D%3D" class="box-icon link round social-instagram border-line-black" target="_BLANK"><i class="icon fs-14 icon-instagram"></i></a></li>
+                                    <!-- <li><a href="#" class="box-icon link round social-tiktok border-line-black"><i class="icon fs-14 icon-tiktok"></i></a></li>
+                                    <li><a href="#" class="box-icon link round social-pinterest border-line-black"><i class="icon fs-14 icon-pinterest-1"></i></a></li> -->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- page-cart -->
+
+        <div class="btn-sidebar-account">
+            <button data-bs-toggle="offcanvas" data-bs-target="#mbAccount" aria-controls="offcanvas"><i class="icon icon-sidebar-2"></i></button>
+        </div>
+
+        <!-- footer -->
+        <? $this->load->view('footer'); ?>
+        <!-- /footer -->
+
+    </div>
 
     <!-- gotop -->
     <div class="progress-wrap">
@@ -921,15 +472,14 @@
                                 <span class="demo-name">Home Baby</span>
                             </a>
                         </div>
-                        
                     </div>
                 </div>
                 
             </div> 
         </div>
     </div>
-    <!-- /modalDemo -->    
-
+    <!-- /modalDemo -->
+    
     <!-- mobile menu -->
     <div class="offcanvas offcanvas-start canvas-mb" id="mobileMenu">
         <span class="icon-close icon-close-popup" data-bs-dismiss="offcanvas" aria-label="Close"></span>
@@ -1154,7 +704,7 @@
                                     </a>
                                     <div id="sub-account" class="collapse">
                                         <ul class="sub-nav-menu sub-menu-level-2">
-                                            <li><a href="my-account.html" class="sub-nav-link">My account</a></li>
+                                            <li><a href="<?= base_url('main/my_account')?>" class="sub-nav-link">My account</a></li>
                                             <li><a href="my-account-orders.html" class="sub-nav-link">My order</a></li>
                                             <li><a href="my-account-orders-details.html" class="sub-nav-link">My order details</a></li>
                                             <li><a href="my-account-address.html" class="sub-nav-link">My address</a></li>
@@ -1523,18 +1073,18 @@
                     <span class="icon-close icon-close-popup" data-bs-dismiss="modal"></span>
                 </div>
                 <div class="tf-login-form">
-                    <form class="" action="<? echo base_url('login'); ?>" accept-charset="utf-8" method="post">
+                    <form class="" action="my-account.html" accept-charset="utf-8">
                         <div class="tf-field style-1">
-                            <input class="tf-field-input tf-input" placeholder=" " type="text"  name="username" required>
-                            <label class="tf-field-label" for="">Username *</label>
+                            <input class="tf-field-input tf-input" placeholder=" " type="email"  name="">
+                            <label class="tf-field-label" for="">Email *</label>
                         </div>
                         <div class="tf-field style-1">
-                            <input class="tf-field-input tf-input" placeholder=" " type="password"  name="password" required>
+                            <input class="tf-field-input tf-input" placeholder=" " type="password"  name="">
                             <label class="tf-field-label" for="">Password *</label>
                         </div>
-                        <!-- <div>
+                        <div>
                             <a href="#forgotPassword" data-bs-toggle="modal" class="btn-link link">Forgot your password?</a>
-                        </div> -->
+                        </div>
                         <div class="bottom"> 
                             <div class="w-100">
                                 <button type="submit" class="tf-btn btn-fill animate-hover-btn radius-3 w-100 justify-content-center"><span>Log in</span></button>
@@ -1588,30 +1138,26 @@
                     <span class="icon-close icon-close-popup" data-bs-dismiss="modal"></span>
                 </div>
                 <div class="tf-login-form">
-                    <form class="" action="<? echo base_url('login/register'); ?>" accept-charset="utf-8" method="post">
+                    <form class="">
                         <div class="tf-field style-1">
-                            <input class="tf-field-input tf-input" required placeholder=" " type="text"  name="name">
-                            <label class="tf-field-label" for="">Name *</label>
+                            <input class="tf-field-input tf-input" placeholder=" " type="text"  name="">
+                            <label class="tf-field-label" for="">First name</label>
                         </div>
                         <div class="tf-field style-1">
-                            <input class="tf-field-input tf-input" required placeholder=" " type="email"  name="email">
+                            <input class="tf-field-input tf-input" placeholder=" " type="text"  name="">
+                            <label class="tf-field-label" for="">Last name</label>
+                        </div>
+                        <div class="tf-field style-1">
+                            <input class="tf-field-input tf-input" placeholder=" " type="email"  name="">
                             <label class="tf-field-label" for="">Email *</label>
                         </div>
                         <div class="tf-field style-1">
-                            <input class="tf-field-input tf-input" required placeholder=" " type="text"  name="phone_no">
-                            <label class="tf-field-label" for="">Phone No. *</label>
-                        </div>
-                        <div class="tf-field style-1">
-                            <input class="tf-field-input tf-input" required placeholder=" " type="text"  name="username">
-                            <label class="tf-field-label" for="">Username *</label>
-                        </div>
-                        <div class="tf-field style-1">
-                            <input class="tf-field-input tf-input" required placeholder=" " type="password"  name="password">
+                            <input class="tf-field-input tf-input" placeholder=" " type="password"  name="">
                             <label class="tf-field-label" for="">Password *</label>
                         </div>
                         <div class="bottom"> 
                             <div class="w-100">
-                                <button type="submit" class="tf-btn btn-fill animate-hover-btn radius-3 w-100 justify-content-center"><span>Register</span></button>
+                                <a href="register.html" class="tf-btn btn-fill animate-hover-btn radius-3 w-100 justify-content-center"><span>Register</span></a>
                             </div>
                             <div class="w-100">
                                 <a href="#login" data-bs-toggle="modal" class="btn-link fw-6 w-100 link">
@@ -1626,13 +1172,6 @@
         </div>
     </div>
     <!-- /modal login -->
-
-    <!-- shoppingCart -->
-    <div class="modal fullRight fade modal-shopping-cart" id="modal-my-cart">
-        
-    </div>
-    <!-- /shoppingCart -->
-
     <!-- modal compare -->
     <div class="offcanvas offcanvas-bottom canvas-compare" id="compare">
         <div class="canvas-wrapper">
@@ -1766,8 +1305,8 @@
                         </div>
                     </div>
                     <div class="tf-product-info-buy-button">
-                        <form>
-                            <a class="tf-btn btn-fill justify-content-center fw-6 fs-16 flex-grow-1 animate-hover-btn btn-add-to-cart"><span>Add to cart -&nbsp;</span><span class="tf-qty-price">$18.00</span></a>
+                        <form class="">
+                            <a href="javascript:void(0);" class="tf-btn btn-fill justify-content-center fw-6 fs-16 flex-grow-1 animate-hover-btn btn-add-to-cart"><span>Add to cart -&nbsp;</span><span class="tf-qty-price">$18.00</span></a>
                             <div class="tf-product-btn-wishlist btn-icon-action">
                                 <i class="icon-heart"></i>
                                 <i class="icon-delete"></i>
@@ -1814,7 +1353,6 @@
                             <div class="swiper-button-prev button-style-arrow single-slide-next"></div>
                         </div>
                     </div>
-                    <?/*
                     <div class="tf-product-info-wrap position-relative">
                         <div class="tf-product-info-list">
                             <div class="tf-product-info-title">
@@ -1915,7 +1453,6 @@
                             </div>
                         </div>
                     </div>
-                    */?>
                 </div>
             </div>
         </div>
@@ -2010,30 +1547,40 @@
     </div>
     <!-- /modal find_size -->
 
+    <!-- sidebar account-->
+    <div class="offcanvas offcanvas-start canvas-filter canvas-sidebar canvas-sidebar-account" id="mbAccount">
+        <div class="canvas-wrapper">
+            <header class="canvas-header">
+                <span class="title">SIDEBAR ACCOUNT</span>
+                <span class="icon-close icon-close-popup" data-bs-dismiss="offcanvas" aria-label="Close"></span>
+            </header>
+            <div class="canvas-body sidebar-mobile-append"> </div>
+        </div>       
+    </div>
+    <!-- End sidebar account -->
+
+    <!-- shoppingCart -->
+    <div class="modal fullRight fade modal-shopping-cart" id="modal-my-cart"></div>
+    <!-- /shoppingCart -->
+
+
 
     <!-- Javascript -->
     <script type="text/javascript">var base_url = "<?= base_url(); ?>";</script>
-    <script type="text/javascript" src="<?= base_url(); ?>assets/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="<?= base_url(); ?>assets/js/jquery.min.js"></script>
-    <script type="text/javascript" src="<?= base_url(); ?>assets/js/swiper-bundle.min.js"></script>
-    <script type="text/javascript" src="<?= base_url(); ?>assets/js/carousel.js"></script>
-    <script type="text/javascript" src="<?= base_url(); ?>assets/js/bootstrap-select.min.js"></script>
-    <script type="text/javascript" src="<?= base_url(); ?>assets/js/lazysize.min.js"></script>
-    <script type="text/javascript" src="<?= base_url(); ?>assets/js/count-down.js"></script>
-    <script type="text/javascript" src="<?= base_url(); ?>assets/js/wow.min.js"></script>
-    <script type="text/javascript" src="<?= base_url(); ?>assets/js/multiple-modal.js"></script>
-    <script type="text/javascript" src="<?= base_url(); ?>assets/js/main.js"></script>
+    <script type="text/javascript" src="<?= base_url()?>assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="<?= base_url()?>assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="<?= base_url()?>assets/js/swiper-bundle.min.js"></script>
+    <script type="text/javascript" src="<?= base_url()?>assets/js/carousel.js"></script>
+    
+    <script type="text/javascript" src="<?= base_url()?>assets/js/bootstrap-select.min.js"></script>
+    <script type="text/javascript" src="<?= base_url()?>assets/js/lazysize.min.js"></script>
+    <script type="text/javascript" src="<?= base_url()?>assets/js/count-down.js"></script>   
+    <script type="text/javascript" src="<?= base_url()?>assets/js/wow.min.js"></script>   
+    <script type="text/javascript" src="<?= base_url()?>assets/js/wow.min.js"></script>
+    <script type="text/javascript" src="<?= base_url()?>assets/js/multiple-modal.js"></script>
+    <script type="text/javascript" src="<?= base_url()?>assets/js/main.js"></script>
 
     <script type="text/javascript">
-        <?php if ($this->session->flashdata('error')) { ?>
-                var msg = '<?php echo $this->session->flashdata('error'); ?>';
-                alert (msg);
-        <?php } ?>
-
-        <?php if ($this->session->flashdata('success')) { ?>
-                var msg = '<?php echo $this->session->flashdata('success'); ?>';
-                alert (msg);
-        <?php } ?>
 
         function viewMyCart(userid)
         {
@@ -2050,11 +1597,7 @@
                 }
             });
         }
-
-
     </script>
-
-
 </body>
 
 </html>

@@ -25,7 +25,7 @@
                 <div class="section-menu-left">
                     <div class="box-logo">
                         <a href="<?=base_url('admin')?>" id="site-logo-inner">
-                            <h4>DXPRINT</h4>
+                           <h4>DXPRINT</h4>
                         </a>
                         <div class="button-show-hide">
                             <i class="icon-chevron-left"></i>
@@ -41,7 +41,7 @@
                 <!-- section-content-right -->
                 <div class="section-content-right">
                     <!-- header-dashboard -->
-                   <? $this->load->view('admin/header-dash'); ?>
+                    <? $this->load->view('admin/header-dash'); ?>
                     <!-- /header-dashboard -->
                     <!-- main-content -->
                     <div class="main-content">
@@ -50,7 +50,7 @@
                             <!-- main-content-wrap -->
                             <div class="main-content-wrap">
                                 <div class="flex items-center flex-wrap justify-between gap20 mb-30">
-                                    <h3>Order List</h3>
+                                    <h3>All User</h3>
                                     <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
                                         <li>
                                             <a href="index.html"><div class="text-tiny">Dashboard</div></a>
@@ -59,110 +59,44 @@
                                             <i class="icon-chevron-right"></i>
                                         </li>
                                         <li>
-                                            <a href="#"><div class="text-tiny">Order</div></a>
+                                            <a href="#"><div class="text-tiny">User</div></a>
                                         </li>
                                         <li>
                                             <i class="icon-chevron-right"></i>
                                         </li>
                                         <li>
-                                            <div class="text-tiny">Order List</div>
+                                            <div class="text-tiny">All User</div>
                                         </li>
                                     </ul>
                                 </div>
-                                <!-- product-list -->
+                                <!-- all-user -->
                                 <div class="wg-box">
-                                    
                                     
                                     <table id="example" class="list-product-table">
                                         <thead style="font-size: 200%;">
                                             <tr>
-                                                <th>Product</th>
-                                                <th>Price</th>
-                                                <th>Quantity</th>
-                                                <th>Payment</th>
-                                                <th>Status</th>
-                                                <th>Action</th>
+                                                <th style="text-align: left;">No</th>
+                                                <th style="text-align: left;">Name</th>
+                                                <th style="text-align: left;">Phone No.</th>
+                                                <th style="text-align: left;">Email</th>
                                             </tr>
                                         </thead>
                                         <tbody style="font-size: 200%;">
-                                            <? foreach ($orders as $key) { ?>
-                                                    <? $product = get_any_table_row(array('product_id' => $key['product_id']), 'product'); ?>
-                                                    <tr>
-                                                        <td><?=ucfirst($product['name'])?>
-                                                            <!-- <p><strong>Order ID : #<?= $key['id']?></strong></p> -->
-                                                            <div class="block-available bg-1 fw-7">Order ID #<?= $key['id']?> </div>
-                                                        </td>
-                                                        <td>RM<?= $product['price']?></td>
-                                                        <td><?= $key['quantity']?></td>
-                                                        <td>RM<?=number_format($key['payment'],2)?></td>
-                                                        <td>
-                                                            <?
-                                                            switch ($key['status']) {
-                                                                case 'PAID':
-                                                                    $a = "Paid";
-                                                                    break;
-                                                                case 'PACKAGING':
-                                                                    $a = "Product Packaging";
-                                                                    break;
-                                                                case 'SHIPPED':
-                                                                    $a = "Shipped";
-                                                                    break;
-                                                                case 'COMPLETE':
-                                                                    $a = "Complete";
-                                                                    break;
-                                                                
-                                                                default:
-                                                                    // code...
-                                                                    break;
-                                                            }
-                                                            ?>
-
-                                                            <? if($key['status'] == "COMPLETE"){ ?>
-                                                            <div class="block-tracking bg-1"><?=$a?></div>
-                                                            <? } else { ?>
-                                                            <div class='block-available bg-1 fw-7'>
-                                                                <?=$a?>
-                                                            </div>
-                                                            <? if($key['status'] == "SHIPPED"){ ?>
-                                                                <p>
-                                                                    <strong>Tracking Number : <?=$key['tracking_no']?></strong>
-                                                                </p>
-                                                                <? } ?>
-                                                            <? } ?>
-                                                            
-                                                        </td>
-                                                        <?/*
-                                                        <td>
-                                                            <?= ($key['id'] == '0') ? "<div class='block-stock bg-1 fw-7'>Out of stock</div>" : "<div class='block-available bg-1 fw-7'>In stock</div>";?>
-                                                        </td>
-                                                        */?>
-                                                        <td>
-                                                            <? if($key['status'] == "PAID"){ ?>
-                                                            <button class="tf-button" onclick="packThisOrder('<?=$key['id']?>')" type="submit" style="padding: 12px; height: 12px;">Packaging Order</button> 
-                                                            <? } elseif ($key['status'] == "PACKAGING") { ?>
-                                                            <button class="tf-button" onclick="shipThisOrder('<?=$key['id']?>')" type="submit" style="padding: 12px; height: 12px;">Ship Order</button> 
-                                                            <? } elseif ($key['status'] == "SHIPPED") { ?>
-                                                            
-                                                            <? } else { ?>
-                                                            <div class="block-available bg-1 fw-7">Delivered</div>
-                                                            <? } ?>
-                                                            <?/*
-                                                            <select onchange="updateStatus('<?=$key['id']?>', this.value)">
-                                                                <option value="">Select Option</option>
-                                                                <option value="Packaging">Packaging</option>
-                                                                <option value="Shipped">Shipped</option>
-                                                            </select>
-                                                            */?>
-                                                            <a class="tf-button" href="<?=base_url('manage/orderDetails/'.$key['id'])?>" style="padding: 12px; height: 12px;">View</a> 
-                                                        </td>
-                                                        <!-- <td></td> -->
-                                                    </tr>
+                                            <? $no =1; ?>
+                                            <? foreach ($all_users as $key) { ?>
+                                            
+                                            <tr>
+                                                <td style="text-align: left;"><?=$no++?></td>
+                                                <td style="text-align: left;"><?=$key['name']?></td>
+                                                <td style="text-align: left;"><?=$key['phone_no']?></td>
+                                                <td style="text-align: left;"><?=$key['email']?></td>
+                                            </tr>
                                             <? } ?>
                                         </tbody>
                                     </table>
-
+                                    
                                 </div>
-                                <!-- /product-list -->
+                                <!-- /all-user -->
                             </div>
                             <!-- /main-content-wrap -->
                         </div>

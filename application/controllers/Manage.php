@@ -22,18 +22,25 @@ class Manage extends CI_Controller {
 		$data['colors'] = get_any_table_array(array('name' => 'color'), 'attributes');
 		$data['sizes'] = get_any_table_array(array('name' => 'size'), 'attributes');
 
+		$user_id = $this->session->userdata('user_id');
+		$data['user'] = get_any_table_row(array('id' => $user_id), 'users');
+
 	    $this->load->view('admin/add-product', $data);
 	}
 
 	function allProduct($data=false)
 	{	
 		$data['products'] = $this->DbManage->get_all_product();
+		$user_id = $this->session->userdata('user_id');
+		$data['user'] = get_any_table_row(array('id' => $user_id), 'users');
 		$this->load->view('admin/product-list', $data);
 	}
 
 	function orderList($data=false)
 	{
 		$data['orders'] = $this->DbManage->get_all_order();
+		$user_id = $this->session->userdata('user_id');
+		$data['user'] = get_any_table_row(array('id' => $user_id), 'users');
 		$this->load->view('admin/order-list', $data);
 	}
 
@@ -160,6 +167,10 @@ class Manage extends CI_Controller {
 		$idd = $this->input->post('id');
 		$logdata = array('item_id' => $idd, 'create_dt' => current_dt(), 'log_comment' => 'Product Packaging');
         insert_any_table($logdata, 'log');
+
+        $updateTrack = array('status' => '1', 'complete_dt' => current_dt());
+        $whreTrack = array('checklist' => 'Order processing', 'item_id' => $idd);
+        update_any_table($updateTrack, $whreTrack, 'track_order');
 	}
 
 
@@ -198,9 +209,70 @@ class Manage extends CI_Controller {
 
 		// print_r($logdata); exit;
         insert_any_table($logdata, 'log');
+
+
+        $updateTrack = array('status' => '1', 'complete_dt' => current_dt());
+        $whreTrack = array('checklist' => 'Being delivered', 'item_id' => $id);
+        update_any_table($updateTrack, $whreTrack, 'track_order');
 	}
 
+	function orderDetails($order_id)
+	{
+		$data['order'] = get_any_table_row(array('id' => $order_id), 'product_order');
+		$data['product'] = get_any_table_row(array('product_id' => $data['order']['product_id']), 'product');
+		$data['address'] = get_any_table_row(array('user_id' => $data['order']['user_id']), 'address');
+		$data['log'] = get_any_table_row(array('item_id' => $order_id, 'log_comment' => 'Product Shipped', 'estimate_date !=' => '0000-00-00 00:00:00'), 'log');
+		$this->load->view('admin/order-details', $data);
 
+	}
+
+	function trackOrder($id)
+	{
+		$data['log'] = get_any_table_array(array('item_id' => $id), 'log');
+		$data['order'] = get_any_table_row(array('id' => $id), 'product_order');
+		$data['product'] = get_any_table_row(array('product_id' => $data['order']['product_id']), 'product');
+
+		$data['track'] = get_any_table_array(array('item_id' => $id), 'track_order');
+
+		$this->load->view('admin/track-order', $data);
+	}
+
+	function allUser($data=false)
+	{
+		$data['all_users'] = get_any_table_array(array('user_type' => 'MEMBER'), 'users');
+		$user_id = $this->session->userdata('user_id');
+		$data['user'] = get_any_table_row(array('id' => $user_id), 'users');
+		$this->load->view('admin/all-users', $data);
+
+	}
+
+	function accSetting()
+	{	
+		$user_id = $this->session->userdata('user_id');
+		$data['user'] = get_any_table_row(array('id' => $user_id), 'users');
+		$this->load->view('admin/acc-setting', $data);
+	}
+
+	function updateProfile($data=false)
+	{
+		$post = $this->input->post();
+		// echo "<pre>"; print_r($post); echo "</pre>";
+
+		if ($post['password'] == '') {
+			$update = array('name' => $post['name'], 'email' => $post['email'], 'phone_no' => $post['phone_no'], 'username' => $post['username']);
+		} else {
+			$update = array('name' => $post['name'], 'username' => $post['username'], 'email' => $post['email'], 'phone_no' => $post['phone_no'], 'password' => md5($post['password']));	
+		}
+
+		$where = array('id' => $this->session->userdata('user_id'));
+
+		update_any_table($update, $where, 'users');
+		// $response = array('status' => true);
+		// echo encode($response);
+		$this->session->set_flashdata('success', "Successfully update !");
+		redirect('manage/accSetting');
+
+	}
 
 
 }

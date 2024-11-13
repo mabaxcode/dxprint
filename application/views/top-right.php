@@ -1,7 +1,7 @@
 <ul class="nav-icon d-flex justify-content-end align-items-center gap-20">
-    <li class="nav-search">
+    <!-- <li class="nav-search">
         <a href="#canvasSearch" data-bs-toggle="offcanvas" aria-controls="offcanvasLeft" class="nav-icon-item"><i class="icon icon-search"></i></a>
-    </li>
+    </li> -->
 
     <? if($user_id){ ?>
 

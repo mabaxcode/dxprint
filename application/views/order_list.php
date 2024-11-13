@@ -18,6 +18,7 @@
    <link rel="stylesheet" href="<?= base_url()?>assets/css/bootstrap.min.css">
    <link rel="stylesheet" href="<?= base_url()?>assets/css/swiper-bundle.min.css">
    <link rel="stylesheet" href="<?= base_url()?>assets/css/animate.css">
+   <link rel="stylesheet" href="<?= base_url()?>assets/dist/sweetalert2.min.css">
    <link rel="stylesheet"type="text/css" href="<?= base_url()?>assets/css/styles.css"/>
 
     <!-- Favicon and Touch Icons  -->
@@ -43,7 +44,7 @@
                         </a>
                     </div>
                     <div class="col-xl-3 col-md-4 col-6">
-                        <a href="index.html" class="logo-header">
+                        <a href="<?=base_url();?>" class="logo-header">
                             <!-- <img src="images/logo/logo.svg" alt="logo" class="logo"> -->
                             <h5><b>DXPRINT</b></h5>
                         </a>
@@ -78,7 +79,7 @@
                                 <li><a href="<?= base_url('main/orderList')?>" class="my-account-nav-item active">Orders</a></li>
                                 <!-- <li><span class="my-account-nav-item">Address</span></li> -->
                                 <li><a href="<?= base_url('main/addressDetails')?>" class="my-account-nav-item">Address</a></li>
-                                <li><a href="<?= base_url('main/addressDetails')?>" class="my-account-nav-item">Account Details</a></li>
+                                <li><a href="<?= base_url('main/accDetails')?>" class="my-account-nav-item">Account Details</a></li>
                                 <!-- <li><a href="my-account-wishlist.html" class="my-account-nav-item">Wishlist</a></li> -->
                                 <li><a href="login.html" class="my-account-nav-item">Logout</a></li>
                             </ul>
@@ -118,6 +119,11 @@
                                                 <a href="<?= base_url('main/orderDetails/'.$key['id'])?>" class="tf-btn btn-fill animate-hover-btn rounded-0 justify-content-center">
                                                     <span>View</span>
                                                 </a>
+                                                <? if($key['status'] == "SHIPPED"){ ?>
+                                                <a href="#" class="tf-btn btn-fill animate-hover-btn rounded-0 justify-content-center" onclick="orderReceived('<?=$key['id']?>')">
+                                                    <span>Order Received</span>
+                                                </a>
+                                                <? } ?>
                                             </td>
                                         </tr>
                                         <? } ?>
@@ -1602,6 +1608,7 @@
     <script type="text/javascript" src="<?= base_url()?>assets/js/wow.min.js"></script>
     <script type="text/javascript" src="<?= base_url()?>assets/js/multiple-modal.js"></script>
     <script type="text/javascript" src="<?= base_url()?>assets/js/main.js"></script>
+    <script type="text/javascript" src="<?= base_url()?>assets/dist/sweetalert2.all.min.js"></script>
 
     <script type="text/javascript">
 
@@ -1671,6 +1678,56 @@
                 }
             });
    
+        }
+
+        function orderReceived(id) {
+
+            Swal.fire({
+              title: "Are you sure?",
+              text: "Order has been received.",
+              icon: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#3085d6",
+              cancelButtonColor: "#d33",
+              confirmButtonText: "Yes"
+            }).then((result) => {
+              if (result.isConfirmed) {
+                $.ajax({
+                    url: base_url + 'main/orderReceived',
+                    type: 'POST',
+                    data: {id:id},
+                    dataType:"json",
+                    success: function(data) {
+                        if (data.status == true) {
+                            // Swal.fire({
+                            //     title: "Success!",
+                            //     text: "Your order has been received.",
+                            //     icon: "success"
+                            // });
+                            // location.reload();
+                            Swal.fire({
+                              title: "Success",
+                              text: "Your order has been received.",
+                              icon: "success",
+                              confirmButtonColor: "#3085d6",
+                              confirmButtonText: "Okay"
+                            }).then((result) => {
+                              if (result.isConfirmed) {
+                                    location.reload();
+                              }
+                            });
+                        } else {
+                            alert ("error on add");
+                        }
+                    },
+                    error: function() {
+                        alert ('error');
+                    }
+                });
+                
+              }
+            });
+            // body...
         }
 
     </script>

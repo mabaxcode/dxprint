@@ -43,7 +43,7 @@
                         </a>
                     </div>
                     <div class="col-xl-3 col-md-4 col-6">
-                        <a href="index.html" class="logo-header">
+                        <a href="<?=base_url();?>" class="logo-header">
                             <!-- <img src="images/logo/logo.svg" alt="logo" class="logo"> -->
                             <h5><b>DXPRINT</b></h5>
                         </a>

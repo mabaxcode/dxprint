@@ -43,7 +43,7 @@
                         </a>
                     </div>
                     <div class="col-xl-3 col-md-4 col-6">
-                        <a href="index.html" class="logo-header">
+                        <a href="<?=base_url();?>" class="logo-header">
                             <!-- <img src="images/logo/logo.svg" alt="logo" class="logo"> -->
                             <h5><b>DXPRINT</b></h5>
                         </a>
@@ -77,7 +77,7 @@
                                 <li><span class="my-account-nav-item active">Dashboard</span></li>
                                 <li><a href="<?= base_url('main/orderList')?>" class="my-account-nav-item">Orders</a></li>
                                 <li><a href="<?= base_url('main/addressDetails')?>" class="my-account-nav-item">Address</a></li>
-                                <li><a href="my-account-edit.html" class="my-account-nav-item">Account Details</a></li>
+                                <li><a href="<?= base_url('main/accDetails')?>" class="my-account-nav-item">Account Details</a></li>
                                 <li><a href="<?= base_url('login/logout')?>" class="my-account-nav-item">Logout</a></li>
                             </ul>
                         </div>
@@ -87,7 +87,7 @@
                             <div class="mb_60">
                                 <h5 class="fw-5 mb_20">Hello <?= $user['name']?></h5>
                                 <p>
-                                    From your account dashboard you can view your <a class="text_primary" href="my-account-orders.html">recent orders</a>, manage your <a class="text_primary" href="my-account-address.html">shipping and billing address</a>, and <a class="text_primary" href="my-account-edit.html">edit your password and account details</a>.
+                                    From your account dashboard you can view your <a class="text_primary" href="#">recent orders</a>, manage your <a class="text_primary" href="#">shipping and billing address</a>, and <a class="text_primary" href="#">edit your password and account details</a>.
                                 </p>
                             </div>
                         </div>

@@ -69,6 +69,7 @@ class Login extends CI_Controller {
 			'email' => $post['email'],
 			'password' => md5($post['password']),
 			'user_type' => 'MEMBER',
+			'phone_no' => $post['phone_no']
 		);
 
 		insert_any_table($insert, 'users');
