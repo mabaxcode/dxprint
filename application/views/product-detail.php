@@ -44,7 +44,7 @@
                         </a>
                     </div>
                     <div class="col-xl-3 col-md-4 col-6">
-                        <a href="index.html" class="logo-header">
+                        <a href="<?=base_url()?>" class="logo-header">
                             <!-- <img src="images/logo/logo.svg" alt="logo" class="logo"> -->
                             <h5><b>DXPRINT</b></h5>
                         </a>
@@ -1552,18 +1552,18 @@
                     <span class="icon-close icon-close-popup" data-bs-dismiss="modal"></span>
                 </div>
                 <div class="tf-login-form">
-                    <form class="" action="my-account.html" accept-charset="utf-8">
+                    <form class="" action="<? echo base_url('login'); ?>" accept-charset="utf-8" method="post">
                         <div class="tf-field style-1">
-                            <input class="tf-field-input tf-input" placeholder=" " type="email"  name="">
-                            <label class="tf-field-label" for="">Email *</label>
+                            <input class="tf-field-input tf-input" placeholder=" " type="text"  name="username" required>
+                            <label class="tf-field-label" for="">Username *</label>
                         </div>
                         <div class="tf-field style-1">
-                            <input class="tf-field-input tf-input" placeholder=" " type="password"  name="">
+                            <input class="tf-field-input tf-input" placeholder=" " type="password"  name="password" required>
                             <label class="tf-field-label" for="">Password *</label>
                         </div>
-                        <div>
+                        <!-- <div>
                             <a href="#forgotPassword" data-bs-toggle="modal" class="btn-link link">Forgot your password?</a>
-                        </div>
+                        </div> -->
                         <div class="bottom"> 
                             <div class="w-100">
                                 <button type="submit" class="tf-btn btn-fill animate-hover-btn radius-3 w-100 justify-content-center"><span>Log in</span></button>
