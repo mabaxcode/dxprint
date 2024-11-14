@@ -17,6 +17,23 @@
     .x-bg-color-black{
         background-color: black;
     }
+    .float{
+    position:fixed;
+    width:60px;
+    height:60px;
+    bottom:40px;
+    right:40px;
+    background-color:#25d366;
+    color:#FFF;
+    border-radius:50px;
+    text-align:center;
+  font-size:30px;
+    box-shadow: 2px 2px 3px #999;
+  z-index:100;
+}
+.my-float{
+    margin-top:16px;
+}
 </style>
 
 <body class="preload-wrapper">
@@ -231,6 +248,8 @@
                                     <div class="tf-product-info-buy-button">
                                         <form class="">
                                             <a href="javascript:void(0);" onclick="addToCart('<?= $user_id?>','<?= $product['product_id']?>');" class="tf-btn btn-fill justify-content-center fw-6 fs-16 flex-grow-1 animate-hover-btn"><span>Add to cart -&nbsp;</span><span class="tf-qty-price total-price">RM<?= number_format($product['price'],2)?></span></a>
+
+
                                             <!-- <a href="javascript:void(0);" class="tf-product-btn-wishlist hover-tooltip box-icon bg_white wishlist btn-icon-action">
                                                 <span class="icon icon-heart"></span>
                                                 <span class="tooltip">Add to Wishlist</span>
@@ -241,10 +260,26 @@
                                                 <span class="tooltip">Add to Compare</span>
                                                 <span class="icon icon-check"></span>
                                             </a> -->
+
+                                            <a href="https://api.whatsapp.com/send?phone=60133619877&text=Pm%20printing" class="float" target="_blank">
+<i class="fa fa-whatsapp fa-lg my-float"></i> 
+</a>
+
+                                           <!--  <a href="#compare" data-bs-toggle="offcanvas" aria-controls="offcanvasLeft" class="tf-product-btn-wishlist hover-tooltip box-icon bg_white compare btn-icon-action">
+                                                <span class="icon icon-compare"></span>
+                                                <span class="tooltip">Add to Compare</span>
+                                                <span class="icon icon-check"></span>
+                                            </a>  -->
+
                                             <div class="w-100">
                                                 <!-- <a href="#" class="btns-full">Buy with <img src="images/payments/paypal.png" alt=""></a> -->
                                                 <!-- <a href="#" class="payment-more-option">More payment options</a> -->
                                             </div>
+                                        </form>
+                                    </div>
+                                    <div class="tf-product-info-buy-button">
+                                        <form class="">
+                                            <a href="https://api.whatsapp.com/send?phone=60133619877&text=Pm%20printing" target="_blank" class="tf-btn justify-content-center fw-6 fs-16 flex-grow-1 animate-hover-btn" style="background-color: #23D366; color: white;"><span><i class="fa fa-whatsapp fa-lg"></i> WhatsApp Me</span></a>
                                         </form>
                                     </div>
                                     <div class="tf-product-info-extra-link">
@@ -601,11 +636,11 @@
     </div>
     <!-- /modal share social -->
     <!-- gotop -->
-    <div class="progress-wrap">
+    <!-- <div class="progress-wrap">
         <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
         <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" style="transition: stroke-dashoffset 10ms linear 0s; stroke-dasharray: 307.919, 307.919; stroke-dashoffset: 286.138;"></path>
         </svg>
-    </div>
+    </div> -->
     <!-- /gotop -->
     
     <!-- toolbar-bottom -->

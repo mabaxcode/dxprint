@@ -12,6 +12,7 @@
    <link rel="stylesheet" href="<?= base_url(); ?>assets/css/swiper-bundle.min.css">
    <link rel="stylesheet" href="<?= base_url(); ?>assets/css/animate.css">
    <link rel="stylesheet"type="text/css" href="<?= base_url(); ?>assets/css/styles.css"/>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
     <!-- Favicon and Touch Icons  -->
     <link rel="shortcut icon" href="<?= base_url(); ?>/assets/images/logo/favicon.png">
