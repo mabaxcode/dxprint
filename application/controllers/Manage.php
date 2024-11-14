@@ -96,7 +96,7 @@ class Manage extends CI_Controller {
         	$result = "";
         	foreach ($imgs as $key) {
         		$path = base_url () . $key['path'] . "/" . $key['filename'];
-        		$result .= "<div class='item'><img src='". $path ."' width='20%'></div>";
+				$result .= "<div class='item'><img src='". $path ."' width='20%'><a onclick=deleteProductImg('".$key['id']."','".$post['tempkey']."')>Delete</a></div>";
         	}
 
         	$content = $result;
@@ -110,10 +110,40 @@ class Manage extends CI_Controller {
 
 	}
 
+	function deleteImg($data=false)
+	{	
+		$id = $this->input->post('id');
+		$tempkey = $this->input->post('tempkey');
+		$where = array('id' => $id);
+		delete_any_table($where, 'product_image');
+
+		$where_img = array('tempkey' => $tempkey);
+        $imgs = get_any_table_array($where_img, 'product_image');
+
+        $result = "";
+    	foreach ($imgs as $key) {
+    		$path = base_url () . $key['path'] . "/" . $key['filename'];
+    		$result .= "<div class='item'><img src='". $path ."' width='20%'><a onclick=deleteProductImg('".$key['id']."','".$tempkey."')>Delete</a></div>";
+    	}
+
+    	$content = $result;
+
+		$response = array('status' => true , 'content' => $content);
+		echo encode($response);
+	}
+
 	function saveProduct($data=false)
 	{
 		$post = $this->input->post();
 		// echo "<pre>"; print_r($post); echo "</pre>";
+
+		if (empty($post['size']) || empty($post['color'])) {
+			// code...
+			$this->session->set_flashdata('error', 'Please choose at least One color and Size');
+			redirect('manage/addProduct');
+		}
+
+		
 
 		$product_id = get_keytab_value('product_id');
 

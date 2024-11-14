@@ -206,19 +206,21 @@ function datetime($date)
     return $formattedDateTime;
 }
 
+function delete_any_table($where, $table)
+{
+    $ci = load_instance();
+    $ci->load->database();
+    $ci->db->delete($table, $where);
+    return $ci->db->affected_rows();
+}
+
 /*
 
 
 
 
 
-function delete_any_table($where, $table)
-{
-    $ci = load_instance();
-    $tco->load->database();
-    $tco->db->delete($table, $where);
-    return $tco->db->affected_rows();
-}
+
 
 
 

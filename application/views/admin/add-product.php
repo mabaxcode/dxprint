@@ -313,6 +313,13 @@
                 
         <?php } ?>
 
+        <?php if ($this->session->flashdata('error')) { ?>
+                
+                var msg = "<? echo $this->session->flashdata('error'); ?>";
+                alert (msg);
+                
+        <?php } ?>
+
         function clearForm() {
             document.getElementById("add-product-formid").reset();
         }
@@ -346,6 +353,28 @@
             });
 
         });
+
+        function deleteProductImg(id, tempkey) {
+            // body...
+            $.ajax({
+                url: base_url + 'manage/deleteImg',
+                type: 'POST',
+                data: {id:id,tempkey:tempkey},
+                dataType: "json",
+                success: function(data) {
+                    if (data.status == true) {
+                        alert ('Image Deleted !');
+                        $('#uploadStatus').html(data.content);
+                    } else {
+                        alert ("Error To Delete"); return;
+                    }
+                },
+                error: function() {
+                    alert ("Error on deleting");
+                }
+            });
+
+        }
 
     </script>
 
