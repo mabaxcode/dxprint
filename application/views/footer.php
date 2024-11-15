@@ -6,8 +6,9 @@
                             <div class="col-xl-3 col-md-6 col-12">
                                 <div class="footer-infor">
                                     <div class="footer-logo">
-                                        <a href="index.html">
-                                            <img src="images/logo/logo.svg" alt="">
+                                        <a href="<?=base_url()?>">
+                                            <!-- <img src="<?=base_url()?>images/logo/logo.svg" alt=""> -->
+                                            <h6>DXPRINT</h6>
                                         </a>
                                     </div>
                                     <ul>
@@ -30,7 +31,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <!-- <div class="col-xl-3 col-md-6 col-12 footer-col-block">
+                            <div class="col-xl-3 col-md-6 col-12 footer-col-block">
                                 <div class="footer-heading footer-heading-desktop">
                                     <h6>Help</h6>
                                 </div>
@@ -39,28 +40,28 @@
                                 </div>
                                 <ul class="footer-menu-list tf-collapse-content">
                                     <li>
-                                        <a href="privacy-policy.html" class="footer-menu_item">Privacy Policy</a>
+                                        <a href="<?=base_url('main/privacyPolicy')?>" class="footer-menu_item">Privacy Policy</a>
                                     </li>
-                                    <li> 
+                                    <!-- <li> 
                                         <a href="delivery-return.html" class="footer-menu_item">  Returns + Exchanges </a>
-                                    </li>
-                                    <li> 
+                                    </li> -->
+                                   <!--  <li> 
                                         <a href="shipping-delivery.html" class="footer-menu_item">Shipping</a>
+                                    </li> -->
+                                    <li> 
+                                        <a href="<?=base_url('main/terms')?>" class="footer-menu_item">Terms &amp; Conditions</a>
                                     </li>
                                     <li> 
-                                        <a href="terms-conditions.html" class="footer-menu_item">Terms &amp; Conditions</a>
+                                        <a href="<?=base_url('main/faq')?>" class="footer-menu_item">FAQ’s</a>
                                     </li>
-                                    <li> 
-                                        <a href="faq-1.html" class="footer-menu_item">FAQ’s</a>
-                                    </li>
-                                    <li> 
+                                    <!-- <li> 
                                         <a href="compare.html" class="footer-menu_item">Compare</a>
                                     </li>
                                     <li> 
                                         <a href="wishlist.html" class="footer-menu_item">My Wishlist</a>
-                                    </li>
+                                    </li> -->
                                 </ul>
-                            </div> -->
+                            </div>
                             <!-- <div class="col-xl-3 col-md-6 col-12 footer-col-block">
                                 <div class="footer-heading footer-heading-desktop">
                                     <h6>About us</h6>

@@ -500,4 +500,58 @@ class Main extends CI_Controller {
 		$this->load->view('contact_us', $data);	
 	}
 
+	function faq($data=false)
+	{	
+
+		$data['list_tshirt_panjang'] = get_any_table_array(array('category' => '1'), 'product');
+		$data['list_tshirt_pendek'] = get_any_table_array(array('category' => '2'), 'product');
+		$data['list_jersey'] = get_any_table_array(array('category' => '3'), 'product');
+		$data['list_uniform'] = get_any_table_array(array('category' => '4'), 'product');
+
+
+
+		$data['user_id'] = $this->user_id;
+		$data['user_type'] = $this->user_type;
+
+		$data['total_in_cart'] = count_any_table(array('user_id' => $this->user_id, 'status' => 'CART'), 'product_order');
+		
+		$this->load->view('faq', $data);	
+	}
+
+	public function privacyPolicy($data=false)
+	{
+		$data['list_tshirt_panjang'] = get_any_table_array(array('category' => '1'), 'product');
+		$data['list_tshirt_pendek'] = get_any_table_array(array('category' => '2'), 'product');
+		$data['list_jersey'] = get_any_table_array(array('category' => '3'), 'product');
+		$data['list_uniform'] = get_any_table_array(array('category' => '4'), 'product');
+
+
+
+		$data['user_id'] = $this->user_id;
+		$data['user_type'] = $this->user_type;
+
+		$data['total_in_cart'] = count_any_table(array('user_id' => $this->user_id, 'status' => 'CART'), 'product_order');
+		
+		$this->load->view('policy', $data);
+	}
+
+	public function terms($data=false)
+	{
+		// code...
+		$data['list_tshirt_panjang'] = get_any_table_array(array('category' => '1'), 'product');
+		$data['list_tshirt_pendek'] = get_any_table_array(array('category' => '2'), 'product');
+		$data['list_jersey'] = get_any_table_array(array('category' => '3'), 'product');
+		$data['list_uniform'] = get_any_table_array(array('category' => '4'), 'product');
+
+
+
+		$data['user_id'] = $this->user_id;
+		$data['user_type'] = $this->user_type;
+
+		$data['total_in_cart'] = count_any_table(array('user_id' => $this->user_id, 'status' => 'CART'), 'product_order');
+		
+		$this->load->view('terms', $data);
+
+	}
+
 }
