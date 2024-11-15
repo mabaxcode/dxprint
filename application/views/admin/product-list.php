@@ -100,7 +100,9 @@
                                                             <?= ($key['stock'] == '0') ? "<div class='block-stock bg-1 fw-7'>Out of stock</div>" : "<div class='block-available bg-1 fw-7'>In stock</div>";?>
                                                             <!-- <div class="block-stock bg-1 fw-7">In Stock</div></td> -->
                                                         <td><?= $key['stock']?></td>
-                                                        <td></td>
+                                                        <td>
+                                                            <a class="tf-button" href="<?=base_url('manage/editProduct/'.$key['id'])?>" style="padding: 12px; height: 12px;">Edit</a> 
+                                                        </td>
                                                     </tr>
                                             <? } ?>
                                         </tbody>
@@ -133,6 +135,12 @@
 
     <script type="text/javascript">
         new DataTable('#example');
+        <?php if ($this->session->flashdata('success')) { ?>
+                
+                var msg = "<? echo $this->session->flashdata('success'); ?>";
+                alert (msg);
+                
+        <?php } ?>
     </script>
 
 </body>

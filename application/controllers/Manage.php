@@ -304,5 +304,34 @@ class Manage extends CI_Controller {
 
 	}
 
+	public function editProduct($id)
+	{
+		// code...
+		$data['colors'] = get_any_table_array(array('name' => 'color'), 'attributes');
+		$data['sizes'] = get_any_table_array(array('name' => 'size'), 'attributes');
+
+		$user_id = $this->session->userdata('user_id');
+		$data['user'] = get_any_table_row(array('id' => $user_id), 'users');
+
+		$data['product'] = get_any_table_row(array('id' => $id), 'product');
+
+	    $this->load->view('admin/edit-product', $data);
+	}
+
+	function doEditProduct($data=false)
+	{
+		$post = $this->input->post();
+
+		// echo "<pre>"; print_r($post); echo "</pre>";
+
+		$update = array('name' => $post['name'], 'category' => $post['category'], 'price' => $post['price'], 'stock' => $post['stock']);
+		$where = array('id' => $post['id']);
+
+		update_any_table($update, $where, 'product');
+
+		$this->session->set_flashdata('success', 'Product Successfully Update !');
+		redirect('manage/allProduct');
+	}
+
 
 }
